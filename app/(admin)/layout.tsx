@@ -22,7 +22,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Sidebar />
-          <main>{children}</main>
+          <main className="w-full mx-8 my-10">{children}</main>
         </ThemeProvider>
       </body>
     </html>

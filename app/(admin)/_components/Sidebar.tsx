@@ -57,7 +57,7 @@ const Sidebar = (props: Props) => {
           </Link>
         </li>
         <li className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer bg-[#666cff] text-white">
-          <Link href="#" className="flex items-center gap-3 px-5">
+          <Link href="/admin" className="flex items-center gap-3 px-5">
             <LayoutDashboard
               className={cn(
                 "cursor-pointer transition-all duration-300",
@@ -68,7 +68,7 @@ const Sidebar = (props: Props) => {
           </Link>
         </li>
         <li className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]">
-          <Link href="#" className="flex items-center gap-3 px-5">
+          <Link href="/admin/posts" className="flex items-center gap-3 px-5">
             <Newspaper
               className={cn(
                 "cursor-pointer transition-all duration-300",
@@ -79,7 +79,10 @@ const Sidebar = (props: Props) => {
           </Link>
         </li>
         <li className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]">
-          <Link href="#" className="flex items-center gap-3 px-5">
+          <Link
+            href="/admin/categories"
+            className="flex items-center gap-3 px-5"
+          >
             <Group
               className={cn(
                 "cursor-pointer transition-all duration-300",
