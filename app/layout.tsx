@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,18 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header>
-          <h1>Next.js</h1>
-        </header>
+        <Header />
         <main>{children}</main>
-        <footer>
-          <p>
-            <a href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app">
-              Powered by{" "}
-              <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-            </a>
-          </p>
-        </footer>
+        <Footer />
       </body>
     </html>
   );

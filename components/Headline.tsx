@@ -7,7 +7,7 @@ type Props = {};
 
 const Headline = (props: Props) => {
   return (
-    <section className="flex gap-4 container">
+    <section className="flex flex-col md:flex-row gap-4 container">
       <Link
         href="/finance"
         className="w-full h-auto aspect-video flex-[4] relative rounded-2xl overflow-hidden headlineAfter"
@@ -20,17 +20,17 @@ const Headline = (props: Props) => {
             className="cover"
           />
           <div className="absolute z-50 bottom-3 left-5 max-w-[75%] text-white flex flex-col gap-1">
-            <h2 className="text-4xl">
+            <h2 className="xl:text-4xl lg:text-3xl line-clamp-2">
               How to Invest Money: Smart Ways to Get Started
             </h2>
-            <p className="text-xs opacity-75 flex items-center gap-6">
+            <p className="text-xs opacity-75 flex items-center gap-4 whitespace-nowrap">
               Selim Enes Erdogan{" "}
               <span className="flex items-center gap-1 mt-[2px]">
                 <Clock size={12} className="mb-[2px]" /> 18.03.2021
               </span>
             </p>
           </div>
-          <h5 className="absolute z-50 top-8 left-0 p-2 bg-green-500 text-white text-lg rounded-r">
+          <h5 className="absolute z-50 top-5 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-sm rounded-r">
             Finance
           </h5>
         </article>
@@ -48,17 +48,17 @@ const Headline = (props: Props) => {
               className="cover"
             />
             <div className="absolute z-50 bottom-2 left-5 max-w-[75%] text-white flex flex-col">
-              <h2 className="text-2xl leading-7">
+              <h2 className="xl:text-2xl lg:text-xl md:text-sm lg:leading-7 line-clamp-2">
                 How to Invest Money: Best Way to Get Good Returns
               </h2>
-              <p className="text-xs opacity-75 flex items-center gap-6">
+              <p className="text-xs opacity-75 flex items-center gap-4 whitespace-nowrap">
                 Selim Enes Erdogan{" "}
                 <span className="flex items-center gap-1 mt-[2px]">
                   <Clock size={12} className="mb-[2px]" /> 18.03.2021
                 </span>
               </p>
             </div>
-            <h5 className="absolute z-50 top-5 left-0 p-2 bg-green-500 text-white rounded-r">
+            <h5 className="absolute z-50 top-4 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-xs rounded-r">
               Finance
             </h5>
           </article>
@@ -75,17 +75,17 @@ const Headline = (props: Props) => {
               className="cover"
             />
             <div className="absolute z-50 bottom-2 left-5 max-w-[75%] text-white flex flex-col">
-              <h2 className="text-2xl leading-7">
+              <h2 className="xl:text-2xl lg:text-xl md:text-sm lg:leading-7 line-clamp-2">
                 How to Invest in Stocks: A Beginner's Guide
               </h2>
-              <p className="text-xs opacity-75 flex items-center gap-6">
+              <p className="text-xs opacity-75 flex items-center gap-4 whitespace-nowrap">
                 Selim Enes Erdogan{" "}
                 <span className="flex items-center gap-1 mt-[2px]">
                   <Clock size={12} className="mb-[2px]" /> 18.03.2021
                 </span>
               </p>
             </div>
-            <h5 className="absolute z-50 top-5 left-0 p-2 bg-green-500 text-white rounded-r">
+            <h5 className="absolute z-50 top-4 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-xs rounded-r">
               Finance
             </h5>
           </article>
