@@ -76,7 +76,7 @@ const Headline = (props: Props) => {
             />
             <div className="absolute z-50 bottom-2 left-5 max-w-[75%] text-white flex flex-col">
               <h2 className="xl:text-2xl lg:text-xl md:text-sm lg:leading-7 line-clamp-2">
-                How to Invest in Stocks: A Beginner's Guide
+                How to Invest in Stocks: A Beginners Guide
               </h2>
               <p className="text-xs opacity-75 flex items-center gap-4 whitespace-nowrap">
                 Selim Enes Erdogan{" "}
