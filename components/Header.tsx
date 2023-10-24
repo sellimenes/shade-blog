@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 type Props = {};
 
@@ -18,25 +19,29 @@ const Header = (props: Props) => {
       <h1 className="text-2xl font-bold">
         <Link href={"/"}>WOBLOG</Link>
       </h1>
-      <DropdownMenu>
-        <DropdownMenuTrigger>Categories</DropdownMenuTrigger>
-        <DropdownMenuContent>
-          {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
+
+      <div className="ml-auto mr-4">
+        <DropdownMenu>
+          <DropdownMenuTrigger>Categories</DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator /> */}
-          <DropdownMenuItem>
-            <Link href={"/finance"}>Finance</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href={"/tech"}>Tech</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href={"/Health"}>Health</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href={"/life"}>Life</Link>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+            <DropdownMenuItem>
+              <Link href={"/finance"}>Finance</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={"/tech"}>Tech</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={"/Health"}>Health</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={"/life"}>Life</Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+      <ThemeToggle />
     </header>
   );
 };

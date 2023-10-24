@@ -1,5 +1,6 @@
 import Sidebar from "./_components/Sidebar";
 import "../globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata = {
   title: "Next.js",
@@ -14,8 +15,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex">
-        <Sidebar />
-        <main>{children}</main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Sidebar />
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

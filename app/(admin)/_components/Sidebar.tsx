@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useState } from "react";
 import HamburgerButton from "@/components/ui/hamburger-button";
 import { Separator } from "@/components/ui/separator";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type Props = {};
 
@@ -23,7 +24,7 @@ const Sidebar = (props: Props) => {
   return (
     <aside
       className={cn(
-        "h-screen relative shadow-xl z-[10000] transition-all duration-300 overflow-hidden",
+        "h-screen relative shadow-xl z-[10000] transition-all duration-300 overflow-hidden flex flex-col",
         open ? "w-64" : "w-12"
       )}
     >
@@ -44,6 +45,17 @@ const Sidebar = (props: Props) => {
       </div>
       <Separator className="my-3 bg-card-foreground opacity-50" />
       <ul>
+        <li className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer">
+          <Link href="/" className="flex items-center gap-3 px-5">
+            <LayoutDashboard
+              className={cn(
+                "cursor-pointer transition-all duration-300",
+                open ? "w-5 h-5" : "w-6 h-6 ml-[-8px]"
+              )}
+            />
+            Go to site
+          </Link>
+        </li>
         <li className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer bg-[#666cff] text-white">
           <Link href="#" className="flex items-center gap-3 px-5">
             <LayoutDashboard
@@ -78,6 +90,12 @@ const Sidebar = (props: Props) => {
           </Link>
         </li>
       </ul>
+      <ThemeToggle
+        className={cn(
+          "mt-auto p-5 transition-all duration-300",
+          !open ? "-ml-4" : ""
+        )}
+      />
     </aside>
   );
 };
