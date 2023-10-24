@@ -21,7 +21,13 @@ const BlogDetail = (props: Props) => {
             canlandırdı.
           </p>
           <div className="relative w-full aspect-video mb-6">
-            <Image src={"/finance-demo-3.jpeg"} alt="blog title" fill />
+            <Image
+              src={"/finance-demo-3.jpeg"}
+              alt="blog title"
+              fill
+              loading="lazy"
+              quality={70}
+            />
           </div>
           <p className="leading-relaxed opacity-80 my-5">
             Son yılların en tartışmalı yatırım araçları hâline gelen kripto

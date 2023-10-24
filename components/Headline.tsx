@@ -18,6 +18,8 @@ const Headline = (props: Props) => {
             src={"/finance-demo.jpeg"}
             alt="finance"
             className="cover"
+            loading="lazy"
+            quality={70}
           />
           <div className="absolute z-50 bottom-3 left-5 max-w-[75%] text-white flex flex-col gap-1">
             <h2 className="xl:text-4xl lg:text-3xl line-clamp-2">
@@ -46,6 +48,8 @@ const Headline = (props: Props) => {
               src={"/finance-demo-2.png"}
               alt="finance"
               className="cover"
+              loading="lazy"
+              quality={70}
             />
             <div className="absolute z-50 bottom-2 left-5 max-w-[75%] text-white flex flex-col">
               <h2 className="xl:text-2xl lg:text-xl md:text-sm lg:leading-7 line-clamp-2">
@@ -73,6 +77,8 @@ const Headline = (props: Props) => {
               src={"/finance-demo-3.jpeg"}
               alt="finance"
               className="cover"
+              loading="lazy"
+              quality={70}
             />
             <div className="absolute z-50 bottom-2 left-5 max-w-[75%] text-white flex flex-col">
               <h2 className="xl:text-2xl lg:text-xl md:text-sm lg:leading-7 line-clamp-2">

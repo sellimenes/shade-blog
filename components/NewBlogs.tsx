@@ -29,6 +29,8 @@ const SingleBlogCard = () => {
           alt="blog title"
           fill
           className="aspect-video cover rounded "
+          loading="lazy"
+          quality={70}
         />
         <h5 className="absolute z-50 bottom-5 lg:bottom-8 left-0 p-2 bg-green-500 text-white lg:text-md text-sm rounded-r">
           Finance

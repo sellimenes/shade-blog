@@ -23,7 +23,13 @@ const SinglePost = () => {
   return (
     <Link href={"#"} className="p-2 rounded-lg border">
       <div className="relative w-full aspect-video rounded overflow-hidden mb-2">
-        <Image src={"/finance-demo-3.jpeg"} alt="blog title" fill />
+        <Image
+          src={"/finance-demo-3.jpeg"}
+          alt="blog title"
+          fill
+          loading="lazy"
+          quality={70}
+        />
       </div>
       <h5 className="md:text-sm line-clamp-2 opacity-90">
         Health Tips and Benefits of Healthy Lifestyle You Should Consider
