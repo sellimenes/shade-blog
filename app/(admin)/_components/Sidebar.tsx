@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import {
+  ArrowDownLeftFromCircle,
   CircleDollarSign,
   Group,
   LayoutDashboard,
@@ -27,7 +28,7 @@ const Sidebar = (props: Props) => {
   return (
     <aside
       className={cn(
-        "h-screen relative shadow-xl z-[10000] transition-all duration-300 overflow-hidden flex flex-col",
+        "h-screen relative shadow-xl z-[10] transition-all duration-300 overflow-hidden flex flex-col",
         open ? "w-64" : "w-12"
       )}
     >
@@ -50,10 +51,10 @@ const Sidebar = (props: Props) => {
       <ul>
         <Link
           href="/"
-          className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer"
+          className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]"
         >
           <li className="flex items-center gap-3 px-5">
-            <LayoutDashboard
+            <ArrowDownLeftFromCircle
               className={cn(
                 "cursor-pointer transition-all duration-300",
                 open ? "w-5 h-5" : "w-6 h-6 ml-[-8px]"
