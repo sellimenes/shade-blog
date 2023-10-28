@@ -31,9 +31,9 @@ const SinglePost = () => {
           quality={70}
         />
       </div>
-      <h5 className="md:text-sm line-clamp-2 opacity-90">
+      <p className="md:text-sm line-clamp-2 opacity-90">
         Health Tips and Benefits of Healthy Lifestyle You Should Consider
-      </h5>
+      </p>
     </Link>
   );
 };

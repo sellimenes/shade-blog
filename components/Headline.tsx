@@ -33,9 +33,9 @@ const Headline = (props: Props) => {
               </span>
             </p>
           </div>
-          <h5 className="absolute z-50 top-5 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-sm rounded-r">
+          <p className="absolute z-50 top-5 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-sm rounded-r">
             Finance
-          </h5>
+          </p>
         </article>
       </Link>
       <div className="flex-[2] flex flex-col gap-4">
@@ -64,9 +64,9 @@ const Headline = (props: Props) => {
                 </span>
               </p>
             </div>
-            <h5 className="absolute z-50 top-4 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-xs rounded-r">
+            <p className="absolute z-50 top-4 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-xs rounded-r">
               Finance
-            </h5>
+            </p>
           </article>
         </Link>
         <Link
@@ -94,9 +94,9 @@ const Headline = (props: Props) => {
                 </span>
               </p>
             </div>
-            <h5 className="absolute z-50 top-4 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-xs rounded-r">
+            <p className="absolute z-50 top-4 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-xs rounded-r">
               Finance
-            </h5>
+            </p>
           </article>
         </Link>
       </div>

@@ -33,9 +33,9 @@ const SingleBlogCard = () => {
           loading="lazy"
           quality={70}
         />
-        <h5 className="absolute z-50 bottom-5 lg:bottom-8 left-0 p-2 bg-green-500 text-white lg:text-md text-sm rounded-r">
+        <p className="absolute z-50 bottom-5 lg:bottom-8 left-0 p-2 bg-green-500 text-white lg:text-md text-sm rounded-r">
           Finance
-        </h5>
+        </p>
       </div>
       <h3 className="mt-4 mb-1 leading-5 line-clamp-2 hover:text-orange-700">
         Health Tips and Benefits of Healthy Lifestyle You Should Consider
