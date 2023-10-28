@@ -33,7 +33,7 @@ const SingleBlogCard = () => {
           loading="lazy"
           quality={70}
         />
-        <p className="absolute z-50 bottom-5 lg:bottom-8 left-0 p-2 bg-green-500 text-white lg:text-md text-sm rounded-r">
+        <p className="absolute z-50 bottom-5 lg:bottom-8 left-0 p-2 bg-green-700 text-white lg:text-md text-sm rounded-r">
           Finance
         </p>
       </div>

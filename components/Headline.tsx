@@ -33,7 +33,7 @@ const Headline = (props: Props) => {
               </span>
             </p>
           </div>
-          <p className="absolute z-50 top-5 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-sm rounded-r">
+          <p className="absolute z-50 top-5 lg:top-8 left-0 p-2 bg-green-700 text-white lg:text-md text-sm rounded-r">
             Finance
           </p>
         </article>
@@ -64,7 +64,7 @@ const Headline = (props: Props) => {
                 </span>
               </p>
             </div>
-            <p className="absolute z-50 top-4 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-xs rounded-r">
+            <p className="absolute z-50 top-4 lg:top-8 left-0 p-2 bg-green-700 text-white lg:text-md text-xs rounded-r">
               Finance
             </p>
           </article>
@@ -94,7 +94,7 @@ const Headline = (props: Props) => {
                 </span>
               </p>
             </div>
-            <p className="absolute z-50 top-4 lg:top-8 left-0 p-2 bg-green-500 text-white lg:text-md text-xs rounded-r">
+            <p className="absolute z-50 top-4 lg:top-8 left-0 p-2 bg-green-700 text-white lg:text-md text-xs rounded-r">
               Finance
             </p>
           </article>
