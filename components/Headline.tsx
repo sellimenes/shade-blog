@@ -15,11 +15,11 @@ const Headline = (props: Props) => {
         <article className="relative w-full h-auto aspect-video">
           <Image
             fill
+            priority
             src={"/finance-demo.jpeg"}
             alt="finance"
             sizes="100%"
             className="cover"
-            loading="lazy"
             quality={70}
           />
           <div className="absolute z-50 bottom-3 left-5 max-w-[75%] text-white flex flex-col gap-1">
@@ -46,11 +46,11 @@ const Headline = (props: Props) => {
           <article className="relative w-full h-auto aspect-video">
             <Image
               fill
+              priority
               sizes="100%"
               src={"/finance-demo-2.png"}
               alt="finance"
               className="cover"
-              loading="lazy"
               quality={70}
             />
             <div className="absolute z-50 bottom-2 left-5 max-w-[75%] text-white flex flex-col">
@@ -76,11 +76,11 @@ const Headline = (props: Props) => {
           <article className="relative w-full h-auto aspect-video">
             <Image
               fill
+              priority
               sizes="100%"
               src={"/finance-demo-3.jpeg"}
               alt="finance"
               className="cover"
-              loading="lazy"
               quality={70}
             />
             <div className="absolute z-50 bottom-2 left-5 max-w-[75%] text-white flex flex-col">
