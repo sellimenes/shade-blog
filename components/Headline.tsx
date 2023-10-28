@@ -10,13 +10,14 @@ const Headline = (props: Props) => {
     <section className="flex flex-col md:flex-row gap-4 container">
       <Link
         href="/finance"
-        className="w-full h-auto aspect-video flex-[4] relative rounded-2xl overflow-hidden headlineAfter"
+        className="flex-[4] relative rounded-2xl overflow-hidden headlineAfter"
       >
-        <article>
+        <article className="relative w-full h-auto aspect-video">
           <Image
             fill
             src={"/finance-demo.jpeg"}
             alt="finance"
+            sizes="100%"
             className="cover"
             loading="lazy"
             quality={70}
@@ -40,11 +41,12 @@ const Headline = (props: Props) => {
       <div className="flex-[2] flex flex-col gap-4">
         <Link
           href="/finance"
-          className="w-full h-auto aspect-video flex-[4] relative rounded-2xl overflow-hidden headlineAfter"
+          className="flex-[4] relative rounded-2xl overflow-hidden headlineAfter"
         >
-          <article>
+          <article className="relative w-full h-auto aspect-video">
             <Image
               fill
+              sizes="100%"
               src={"/finance-demo-2.png"}
               alt="finance"
               className="cover"
@@ -69,11 +71,12 @@ const Headline = (props: Props) => {
         </Link>
         <Link
           href="/finance"
-          className="w-full h-auto aspect-video flex-[4] relative rounded-2xl overflow-hidden headlineAfter"
+          className="flex-[4] relative rounded-2xl overflow-hidden headlineAfter"
         >
-          <article>
+          <article className="relative w-full h-auto aspect-video">
             <Image
               fill
+              sizes="100%"
               src={"/finance-demo-3.jpeg"}
               alt="finance"
               className="cover"

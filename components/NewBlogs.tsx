@@ -26,6 +26,7 @@ const SingleBlogCard = () => {
       <div className="relative aspect-video">
         <Image
           src="/finance-demo-2.png"
+          sizes="100%"
           alt="blog title"
           fill
           className="aspect-video cover rounded "

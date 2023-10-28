@@ -12,14 +12,17 @@ import { useState } from "react";
 import HamburgerButton from "@/components/ui/hamburger-button";
 import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "@/components/ThemeToggle";
+import { usePathname } from "next/navigation";
 
 type Props = {};
 
 const Sidebar = (props: Props) => {
+  const url = usePathname();
   const [open, setOpen] = useState(true);
 
   const toggleSidebar = () => {
     setOpen(!open);
+    console.log(url);
   };
   return (
     <aside
@@ -45,8 +48,11 @@ const Sidebar = (props: Props) => {
       </div>
       <Separator className="my-3 bg-card-foreground opacity-50" />
       <ul>
-        <li className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer">
-          <Link href="/" className="flex items-center gap-3 px-5">
+        <Link
+          href="/"
+          className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer"
+        >
+          <li className="flex items-center gap-3 px-5">
             <LayoutDashboard
               className={cn(
                 "cursor-pointer transition-all duration-300",
@@ -54,10 +60,18 @@ const Sidebar = (props: Props) => {
               )}
             />
             Go to site
-          </Link>
-        </li>
-        <li className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer bg-[#666cff] text-white">
-          <Link href="/admin" className="flex items-center gap-3 px-5">
+          </li>
+        </Link>
+        <Link
+          href="/admin"
+          className={cn(
+            "flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer",
+            url === "/admin"
+              ? "bg-[#666cff] text-white"
+              : "hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]"
+          )}
+        >
+          <li className="flex items-center gap-3 px-5">
             <LayoutDashboard
               className={cn(
                 "cursor-pointer transition-all duration-300",
@@ -65,10 +79,18 @@ const Sidebar = (props: Props) => {
               )}
             />
             Dashboard
-          </Link>
-        </li>
-        <li className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]">
-          <Link href="/admin/posts" className="flex items-center gap-3 px-5">
+          </li>
+        </Link>
+        <Link
+          href="/admin/posts"
+          className={cn(
+            "flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer",
+            url === "/admin/posts"
+              ? "bg-[#666cff] text-white"
+              : "hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]"
+          )}
+        >
+          <li className="flex items-center gap-3 px-5">
             <Newspaper
               className={cn(
                 "cursor-pointer transition-all duration-300",
@@ -76,13 +98,18 @@ const Sidebar = (props: Props) => {
               )}
             />
             Posts
-          </Link>
-        </li>
-        <li className="flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]">
-          <Link
-            href="/admin/categories"
-            className="flex items-center gap-3 px-5"
-          >
+          </li>
+        </Link>
+        <Link
+          href="/admin/categories"
+          className={cn(
+            "flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer",
+            url === "/admin/categories"
+              ? "bg-[#666cff] text-white"
+              : "hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]"
+          )}
+        >
+          <li className="flex items-center gap-3 px-5">
             <Group
               className={cn(
                 "cursor-pointer transition-all duration-300",
@@ -90,8 +117,8 @@ const Sidebar = (props: Props) => {
               )}
             />
             Categories
-          </Link>
-        </li>
+          </li>
+        </Link>
       </ul>
       <ThemeToggle
         className={cn(
