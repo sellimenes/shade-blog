@@ -1,7 +1,6 @@
 // @/api/category.js
 
 import axios from "axios";
-import { addCategory, deleteCategorySlice } from "@/store/categoryReducer";
 
 export const createCategory = async (name: String) => {
   try {

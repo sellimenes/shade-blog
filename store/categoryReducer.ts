@@ -4,15 +4,19 @@ const categorySlice = createSlice({
   name: "categories",
   initialState: [],
   reducers: {
-    addCategory: (state: any, action: any) => {
-      state.push(action.payload);
+    setCategories: (state, action) => {
+      return action.payload;
     },
-    deleteCategorySlice: (state, action) => {
+    deleteCategory: (state, action) => {
       return state.filter((category: any) => category.id !== action.payload);
+    },
+    addCategory: (state, action: { payload: any }) => {
+      // state.push(action.payload);
     },
   },
 });
 
-export const { addCategory, deleteCategorySlice } = categorySlice.actions;
+export const { deleteCategory, setCategories, addCategory } =
+  categorySlice.actions;
 
 export default categorySlice.reducer;

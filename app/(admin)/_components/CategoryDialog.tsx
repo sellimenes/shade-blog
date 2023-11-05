@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { createCategory } from "@/actions/categoryActions";
+import { useDispatch } from "react-redux";
 
 import {
   Sheet,
@@ -12,9 +12,13 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
+import { createCategory, getCategories } from "@/actions/categoryActions";
+import { setCategories } from "@/store/categoryReducer";
+
 type Props = {};
 
 const CategoryDialog = (props: Props) => {
+  const dispatch = useDispatch;
   const [name, setName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
