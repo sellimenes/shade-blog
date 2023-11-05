@@ -33,7 +33,7 @@ const Categories = (props: Props) => {
             aria-label="Decrement value"
             onClick={() => dispatch(decrement())}
           >
-            Decrement
+            Decrements
           </button>
         </div>
       </div>
