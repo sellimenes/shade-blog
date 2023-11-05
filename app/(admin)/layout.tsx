@@ -1,6 +1,7 @@
 import Sidebar from "./_components/Sidebar";
 import "../globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import ReduxProvider from "@/store/ReduxProvider";
 
 export const metadata = {
   title: "Shade Blog",
@@ -16,15 +17,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Sidebar />
-          <main className="w-full mx-8 my-10">{children}</main>
-        </ThemeProvider>
+        <ReduxProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Sidebar />
+            <main className="w-full mx-8 my-10">{children}</main>
+          </ThemeProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
