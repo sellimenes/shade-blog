@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import dynamic from "next/dynamic";
+import axios from "axios";
 
 import { Label } from "@/components/ui/label";
 import AddBlogForm from "@/app/(admin)/_components/AddBlogForm";
@@ -32,7 +35,9 @@ const NewPostPage = (props: Props) => {
         </div>
         <UploadImage className="absolute top-0 right-0" />
       </div>
-      <Button className="mt-4">Publish</Button>
+      <Button className="mt-4" onClick={() => {}}>
+        Publish
+      </Button>
     </>
   );
 };

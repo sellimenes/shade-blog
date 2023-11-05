@@ -1,8 +1,8 @@
+"use client";
+
 import React from "react";
+
 import CategoriesTable from "../../_components/CategoriesTable";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Plus } from "lucide-react";
 import CategoryDialog from "../../_components/CategoryDialog";
 
 type Props = {};
