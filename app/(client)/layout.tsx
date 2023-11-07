@@ -11,7 +11,6 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Shade Blog",
   description: "Coded by Selim Enes",
-  robots: "noindex, nofollow",
 };
 
 export default function RootLayout({
