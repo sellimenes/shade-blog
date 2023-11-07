@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { AppDispatch } from "@/store/store";
 import { useDispatch } from "react-redux";
 
 import {
@@ -12,19 +13,20 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
-import { createCategory, getCategories } from "@/actions/categoryActions";
-import { setCategories } from "@/store/categoryReducer";
+import { createCategory } from "@/actions/categoryActions";
+import { getCategoriesThunk } from "@/store/categorySlice";
 
 type Props = {};
 
 const CategoryDialog = (props: Props) => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch<AppDispatch>();
   const [name, setName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCreateCategory = async (name: string) => {
     try {
       await createCategory(name);
+      await dispatch(getCategoriesThunk());
       setIsOpen(false);
     } catch (error) {
       console.log(error);

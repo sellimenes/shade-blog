@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import type { RootState } from "@/store/configureStore";
+import React, { useEffect } from "react";
+import { AppDispatch, type RootState } from "@/store/store";
 import { useSelector, useDispatch } from "react-redux";
 
 import { MoreVertical } from "lucide-react";
@@ -22,45 +22,31 @@ import {
 } from "@/components/ui/dropdown-menu";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
-import { getCategories, deleteCategory } from "@/actions/categoryActions";
-import { setCategories as setCategoriesRedux } from "@/store/categoryReducer";
+import { getCategoriesThunk } from "@/store/categorySlice";
+import { deleteCategory } from "@/actions/categoryActions";
 
 type Props = {};
 
 const CategoriesTable = (props: Props) => {
-  const dispatch = useDispatch();
-  const categoriesfromRedux = useSelector(
-    (state: RootState) => state.categories
+  const dispatch = useDispatch<AppDispatch>();
+  const categories = useSelector(
+    (state: RootState) => state.categories.categories
   );
 
-  const fetchData = async () => {
-    try {
-      const categoriesData = await getCategories();
-      // Fetch data and send to categoryReducer
-      dispatch(setCategoriesRedux(categoriesData));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    fetchData();
+    dispatch(getCategoriesThunk());
   }, []);
 
-  useEffect(() => {
-    console.log(categoriesfromRedux);
-  }, [categoriesfromRedux]);
-
-  const handleDeleteCategory = async (categoryId: String) => {
+  const handleDeleteCategory = async (id: string) => {
     try {
-      await deleteCategory(categoryId);
-      fetchData();
+      await deleteCategory(id);
+      await dispatch(getCategoriesThunk());
     } catch (error) {
       console.log(error);
     }
   };
 
-  if (categoriesfromRedux.length < 1) {
+  if (categories?.length < 1) {
     return <LoadingSpinner />;
   }
 
@@ -75,7 +61,7 @@ const CategoriesTable = (props: Props) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {categoriesfromRedux.map((category: any) => (
+        {categories?.map((category: any) => (
           <TableRow key={category.id}>
             <TableCell>12</TableCell>
             <TableCell>{category.name}</TableCell>
