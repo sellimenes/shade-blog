@@ -36,7 +36,7 @@ const UploadImage = ({ className }: Props) => {
   return (
     <div
       className={cn(
-        "mt-4 max-w-md bg-white rounded-lg shadow-md p-4 cursor-pointer border border-dashed",
+        "mt-4 max-w-md bg-primary rounded-lg shadow-md p-4 cursor-pointer",
         className
       )}
       onClick={handleClick}
@@ -60,7 +60,9 @@ const UploadImage = ({ className }: Props) => {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center">
-          <span className="text-2xl">Upload Cover Image</span>
+          <span className="text-2xl text-white dark:text-primary-foreground">
+            Upload Cover Image
+          </span>
         </div>
       )}
     </div>
