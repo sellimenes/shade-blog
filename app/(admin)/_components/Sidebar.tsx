@@ -23,7 +23,6 @@ const Sidebar = (props: Props) => {
 
   const toggleSidebar = () => {
     setOpen(!open);
-    console.log(url);
   };
   return (
     <aside

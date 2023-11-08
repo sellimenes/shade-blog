@@ -13,6 +13,7 @@ export async function POST(req: Request) {
     const category = await prisma.category.create({
       data: {
         name,
+        slug: name.toLowerCase().replace(" ", "-"),
       },
     });
 

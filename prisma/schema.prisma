@@ -14,6 +14,7 @@ model Post {
   title       String
   content     String?
   coverImage  String?
+  slug        String    @unique
   published   Boolean   @default(false)
   category    Category? @relation(fields: [categoryId], references: [id])
   categoryId  String?   @db.ObjectId
@@ -25,5 +26,6 @@ model Category {
   updatedAt   DateTime  @updatedAt
   name        String
   description String?
+  slug        String    @unique
   posts       Post[]
 }

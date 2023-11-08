@@ -1,19 +1,37 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+
+import { getCategories } from "@/actions/categoryActions";
 
 type Props = {};
 
+type Category = {
+  id: string;
+  name: string;
+  slug: string;
+};
+
 const Header = (props: Props) => {
+  const [categories, setCategories] = useState([]);
+
+  const handleGetCategories = async () => {
+    const fetchedCategories = await getCategories();
+    setCategories(fetchedCategories);
+  };
+  useEffect(() => {
+    handleGetCategories();
+  }, []);
+
   return (
     <header className="container my-2 h-16 flex items-center justify-between">
       <h1 className="text-2xl font-bold">
@@ -24,20 +42,11 @@ const Header = (props: Props) => {
         <DropdownMenu>
           <DropdownMenuTrigger>Categories</DropdownMenuTrigger>
           <DropdownMenuContent>
-            {/* <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator /> */}
-            <DropdownMenuItem>
-              <Link href={"/finance"}>Finance</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href={"/tech"}>Tech</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href={"/Health"}>Health</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href={"/life"}>Life</Link>
-            </DropdownMenuItem>
+            {categories.map((category: Category) => (
+              <DropdownMenuItem key={category.id}>
+                <Link href={category.slug}>{category.name}</Link>
+              </DropdownMenuItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
