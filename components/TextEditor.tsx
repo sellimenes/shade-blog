@@ -33,6 +33,8 @@ function TextEditor() {
       value={value}
       onChange={setValue}
       modules={modules}
+      placeholder="Write something awesome..."
+      style={{ color: "white" }}
     />
   );
 }

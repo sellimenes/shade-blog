@@ -96,3 +96,36 @@
 .headlineAfter:hover::after {
   height: 50%;
 }
+
+/* Quill Toolbar design */
+.ql-snow .ql-stroke {
+  @apply dark:stroke-white;
+}
+
+.ql-snow .ql-fill,
+.ql-snow .ql-stroke.ql-fill {
+  @apply dark:fill-white;
+}
+
+.ql-snow .ql-picker {
+  @apply dark:text-white;
+}
+
+.ql-snow .ql-picker-item {
+  @apply dark:text-gray-800;
+}
+/* Quill Toolbar design end */
+
+/* Quill placeholder color */
+.quill > .ql-container > .ql-editor.ql-blank::before {
+  @apply dark:text-white;
+}
+
+/* Quill border radius and color */
+.ql-toolbar.ql-snow {
+  @apply !border-input rounded-t-md;
+}
+
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  @apply border-input rounded-b-md;
+}

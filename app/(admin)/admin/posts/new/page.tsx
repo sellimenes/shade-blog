@@ -20,14 +20,14 @@ const NewPostPage = (props: Props) => {
   return (
     <>
       <AddBlogForm />
-      <div className="mt-4">
+      <div className="mt-4 flex flex-col gap-1">
         <Label htmlFor="editor" className="text-xl">
           Content
         </Label>
         <TextEditor />
       </div>
       <div className="mt-4 relative">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-1">
           <Label htmlFor="category" className="text-xl">
             Category
           </Label>
