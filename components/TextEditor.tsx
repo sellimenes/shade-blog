@@ -1,8 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+
+type Props = {
+  onChange: (value: string) => void;
+};
 
 const modules = {
   toolbar: [
@@ -20,18 +24,15 @@ const modules = {
   ],
 };
 
-function TextEditor() {
-  const [value, setValue] = useState("");
-
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
+function TextEditor({ onChange }: Props) {
+  const handleChange = (content: string) => {
+    onChange(content);
+  };
 
   return (
     <ReactQuill
       theme="snow"
-      value={value}
-      onChange={setValue}
+      onChange={handleChange}
       modules={modules}
       placeholder="Write something awesome..."
       style={{ color: "white" }}

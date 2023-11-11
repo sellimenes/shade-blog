@@ -26,7 +26,11 @@ type Category = {
   slug: string;
 };
 
-function SelectCategoryCombobox() {
+type Props = {
+  onChange: (value: string) => void;
+};
+
+function SelectCategoryCombobox({ onChange }: Props) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [categories, setCategories] = useState([]);
@@ -67,11 +71,12 @@ function SelectCategoryCombobox() {
                 key={category.name}
                 value={category.name}
                 onSelect={(currentValue) => {
-                  setValue(
+                  const newValue =
                     currentValue === value
                       ? ""
-                      : capitalizeFirstLetter(currentValue)
-                  );
+                      : capitalizeFirstLetter(currentValue);
+                  setValue(newValue);
+                  onChange(category.id);
                   setOpen(false);
                 }}
               >
