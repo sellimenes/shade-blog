@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 
 import { Input } from "@/components/ui/input";
@@ -19,6 +20,7 @@ import { createPost } from "@/actions/postActions";
 type Props = {};
 
 const AddBlogForm = (props: Props) => {
+  const router = useRouter();
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -34,6 +36,7 @@ const AddBlogForm = (props: Props) => {
     e.preventDefault();
     const { title, content, categoryId } = postData;
     const res = await createPost(title, content, categoryId);
+    router.push("/admin/posts");
     console.log(res);
   };
   return (

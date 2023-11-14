@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import moment from "moment";
 import { MoreVertical } from "lucide-react";
 
@@ -32,11 +35,24 @@ type Post = {
   slug: string;
   published: boolean;
   categoryId: string | null;
-  category: string | null;
+  category: {
+    id: any;
+    createdAt: any;
+    updatedAt: any;
+    name: string;
+    slug: string;
+  } | null;
 };
 
-const BlogsTable = async (props: Props) => {
-  const posts = await getPosts();
+const BlogsTable = (props: Props) => {
+  const [posts, setPosts] = useState<Post[]>([]);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const posts = await getPosts();
+      setPosts(posts);
+    };
+    fetchPosts();
+  }, []);
   return (
     <Table className="mt-2">
       <TableHeader>
@@ -54,7 +70,7 @@ const BlogsTable = async (props: Props) => {
               {moment(post.createdAt).format("DD.MM.YYYY")}
             </TableCell>
             <TableCell>{post.title}</TableCell>
-            <TableCell>{post.category}</TableCell>
+            <TableCell>{post.category?.name}</TableCell>
             <TableCell className="w-[24px] p-0">
               <DropdownMenu>
                 <DropdownMenuTrigger>

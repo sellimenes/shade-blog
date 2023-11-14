@@ -19,24 +19,34 @@ export const createPost = async (
   }
 };
 
+// export async function getPosts() {
+//   try {
+//     const posts = await prisma.post.findMany({
+//       include: {
+//         category: true,
+//       },
+//     });
+
+//     // Her post için sadece kategori ismini al
+//     const postsWithCategoryName = posts.map((post) => ({
+//       ...post,
+//       category: post.category ? post.category.name : null,
+//     }));
+
+//     return postsWithCategoryName;
+//   } catch (error) {
+//     console.log("POST GET", error);
+//     throw new Error("Something went wrong");
+//   }
+// }
+
 export async function getPosts() {
   try {
-    const posts = await prisma.post.findMany({
-      include: {
-        category: true,
-      },
-    });
-
-    // Her post için sadece kategori ismini al
-    const postsWithCategoryName = posts.map((post) => ({
-      ...post,
-      category: post.category ? post.category.name : null,
-    }));
-
-    return postsWithCategoryName;
+    const response = await axios.get("/api/post");
+    return response.data;
   } catch (error) {
-    console.log("POST GET", error);
-    throw new Error("Something went wrong");
+    console.log(error);
+    throw error;
   }
 }
 
