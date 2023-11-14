@@ -36,7 +36,7 @@ export async function getPosts() {
     return postsWithCategoryName;
   } catch (error) {
     console.log("POST GET", error);
-    return new NextResponse("Something went wrong", { status: 500 });
+    throw new Error("Something went wrong");
   }
 }
 

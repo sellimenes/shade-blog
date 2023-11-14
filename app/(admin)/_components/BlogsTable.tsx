@@ -26,13 +26,13 @@ type Post = {
   id: any;
   createdAt: any;
   updatedAt: any;
-  title: String;
-  content: String;
-  coverImage: String | null;
-  slug: String;
-  published: Boolean;
-  categoryId: String;
-  category: String;
+  title: string;
+  content: string | null;
+  coverImage: string | null;
+  slug: string;
+  published: boolean;
+  categoryId: string | null;
+  category: string | null;
 };
 
 const BlogsTable = async (props: Props) => {
