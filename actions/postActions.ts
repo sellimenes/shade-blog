@@ -1,4 +1,6 @@
 import axios from "axios";
+import { NextResponse } from "next/server";
+import prisma from "@/lib/prismadb";
 
 export const createPost = async (
   title: String,
@@ -17,15 +19,26 @@ export const createPost = async (
   }
 };
 
-export const getPosts = async () => {
+export async function getPosts() {
   try {
-    const response = await axios.get("/api/post");
-    return response.data;
+    const posts = await prisma.post.findMany({
+      include: {
+        category: true,
+      },
+    });
+
+    // Her post için sadece kategori ismini al
+    const postsWithCategoryName = posts.map((post) => ({
+      ...post,
+      category: post.category ? post.category.name : null,
+    }));
+
+    return postsWithCategoryName;
   } catch (error) {
-    console.log(error);
-    throw error;
+    console.log("POST GET", error);
+    return new NextResponse("Something went wrong", { status: 500 });
   }
-};
+}
 
 export const getPost = async (id: String) => {
   try {

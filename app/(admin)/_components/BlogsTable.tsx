@@ -1,8 +1,9 @@
-import React from "react";
+import moment from "moment";
+import { MoreVertical } from "lucide-react";
+
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -16,15 +17,28 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreVertical } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
+import { getPosts } from "@/actions/postActions";
 
 type Props = {};
 
-const BlogsTable = (props: Props) => {
+type Post = {
+  id: any;
+  createdAt: any;
+  updatedAt: any;
+  title: String;
+  content: String;
+  coverImage: String | null;
+  slug: String;
+  published: Boolean;
+  categoryId: String;
+  category: String;
+};
+
+const BlogsTable = async (props: Props) => {
+  const posts = await getPosts();
   return (
     <Table className="mt-2">
-      {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Date</TableHead>
@@ -34,28 +48,30 @@ const BlogsTable = (props: Props) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">25.10.2023</TableCell>
-          <TableCell>
-            Google, Kaç Para Kazandığını Açıkladı: Şirketin Büyümesi Durmuyor!
-          </TableCell>
-          <TableCell>Category</TableCell>
-          <TableCell className="w-[24px] p-0">
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <MoreVertical />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </TableCell>
-        </TableRow>
+        {posts?.map((post: Post) => (
+          <TableRow key={post.id}>
+            <TableCell className="font-medium">
+              {moment(post.createdAt).format("DD.MM.YYYY")}
+            </TableCell>
+            <TableCell>{post.title}</TableCell>
+            <TableCell>{post.category}</TableCell>
+            <TableCell className="w-[24px] p-0">
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <MoreVertical />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>Billing</DropdownMenuItem>
+                  <DropdownMenuItem>Team</DropdownMenuItem>
+                  <DropdownMenuItem>Subscription</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
