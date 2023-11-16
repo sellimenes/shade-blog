@@ -68,3 +68,20 @@ export const deletePost = async (id: String) => {
     throw error;
   }
 };
+
+export const getSinglePost = async (slug: string) => {
+  try {
+    const post = await prisma.post.findUnique({
+      where: {
+        slug,
+      },
+    });
+    if (!post) {
+      return null;
+    }
+    return post;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};

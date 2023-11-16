@@ -143,3 +143,33 @@
 .ql-toolbar.ql-snow + .ql-container.ql-snow {
   @apply border-input rounded-b-md;
 }
+
+/* Single Post content start */
+.postWrapper {
+  @apply dark:text-white text-black flex flex-col gap-1;
+}
+
+.postWrapper p {
+  @apply leading-relaxed opacity-80;
+}
+
+.postWrapper .ql-align-center {
+  text-align: center;
+}
+
+.postWrapper .ql-align-right {
+  text-align: end;
+}
+
+.postWrapper ol {
+  @apply list-decimal list-inside;
+}
+
+.postWrapper ul {
+  @apply list-disc list-inside;
+}
+
+.postWrapper pre {
+  @apply bg-gray-100 dark:bg-gray-800 rounded-md p-3;
+}
+/* Single Post content end */
