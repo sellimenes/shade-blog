@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import moment from "moment";
-import { MoreVertical } from "lucide-react";
+import { MoreVertical, Pencil, X } from "lucide-react";
 
 import {
   Table,
@@ -20,8 +20,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 import { getPosts } from "@/actions/postActions";
+import { Switch } from "@/components/ui/switch";
 
 type Props = {};
 
@@ -71,20 +78,21 @@ const BlogsTable = (props: Props) => {
             </TableCell>
             <TableCell>{post.title}</TableCell>
             <TableCell>{post.category?.name}</TableCell>
-            <TableCell className="w-[24px] p-0">
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <MoreVertical />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Billing</DropdownMenuItem>
-                  <DropdownMenuItem>Team</DropdownMenuItem>
-                  <DropdownMenuItem>Subscription</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <TableCell className="p-4 flex items-center justify-end gap-6">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Switch checked={post.published} />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Draft/Publish Post</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <div className="flex items-center gap-2">
+                <Pencil className="cursor-pointer w-5 h-5" />
+                <X className="cursor-pointer text-red-500" />
+              </div>
             </TableCell>
           </TableRow>
         ))}
