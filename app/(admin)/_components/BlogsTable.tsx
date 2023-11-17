@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import moment from "moment";
-import { MoreVertical, Pencil, X } from "lucide-react";
+import { Pencil, X } from "lucide-react";
 
 import {
   Table,
@@ -13,22 +13,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-
-import { getPosts } from "@/actions/postActions";
 import { Switch } from "@/components/ui/switch";
+
+import { getPosts, togglePublishPost } from "@/actions/postActions";
 
 type Props = {};
 
@@ -53,13 +45,21 @@ type Post = {
 
 const BlogsTable = (props: Props) => {
   const [posts, setPosts] = useState<Post[]>([]);
+
+  const fetchPosts = async () => {
+    const posts = await getPosts();
+    setPosts(posts);
+  };
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const posts = await getPosts();
-      setPosts(posts);
-    };
     fetchPosts();
   }, []);
+
+  const handleSwitch = async (id: string, published: boolean) => {
+    await togglePublishPost(id, published);
+    fetchPosts();
+  };
+
   return (
     <Table className="mt-2">
       <TableHeader>
@@ -82,7 +82,12 @@ const BlogsTable = (props: Props) => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <Switch checked={post.published} />
+                    <Switch
+                      checked={post.published}
+                      onCheckedChange={() =>
+                        handleSwitch(post.id, !post.published)
+                      }
+                    />
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>Draft/Publish Post</p>

@@ -33,3 +33,25 @@ export async function DELETE(req: Request) {
     return new NextResponse("Something went wrong", { status: 500 });
   }
 }
+
+export async function PUT(req: Request) {
+  try {
+    const body = await req.json();
+    const { id, title, content, categoryId, published } = body;
+    const post = await prisma.post.update({
+      where: {
+        id,
+      },
+      data: {
+        title,
+        content,
+        categoryId,
+        published,
+      },
+    });
+    return NextResponse.json(post);
+  } catch (error) {
+    console.log("POST PUT", error);
+    return new NextResponse("Something went wrong", { status: 500 });
+  }
+}

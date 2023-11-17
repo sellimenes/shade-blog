@@ -85,3 +85,16 @@ export const getSinglePost = async (slug: string) => {
     throw error;
   }
 };
+
+export const togglePublishPost = async (id: string, published: boolean) => {
+  try {
+    const post = await axios.put(`/api/post/${id}`, {
+      id,
+      published,
+    });
+    return post.data;
+  } catch (error) {
+    console.log("POST PUBLISH", error);
+    return new NextResponse("Something went wrong", { status: 500 });
+  }
+};
