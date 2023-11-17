@@ -17,9 +17,11 @@ const TextEditor = dynamic(() => import("@/components/TextEditor"), {
 
 import { createPost } from "@/actions/postActions";
 
-type Props = {};
+type Props = {
+  id?: string;
+};
 
-const AddBlogForm = (props: Props) => {
+const AddBlogForm = ({ id }: Props) => {
   const router = useRouter();
   const [postData, setPostData] = useState({
     title: "",

@@ -21,6 +21,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 
 import { getPosts, togglePublishPost } from "@/actions/postActions";
+import Link from "next/link";
 
 type Props = {};
 
@@ -95,7 +96,9 @@ const BlogsTable = (props: Props) => {
                 </Tooltip>
               </TooltipProvider>
               <div className="flex items-center gap-2">
-                <Pencil className="cursor-pointer w-5 h-5" />
+                <Link href={`/admin/posts/edit/${post.id}`}>
+                  <Pencil className="cursor-pointer w-5 h-5" />
+                </Link>
                 <X className="cursor-pointer text-red-500" />
               </div>
             </TableCell>
