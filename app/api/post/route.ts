@@ -83,3 +83,25 @@ export async function GET() {
     return new NextResponse("Something went wrong", { status: 500 });
   }
 }
+
+export async function DELETE(req: Request) {
+  try {
+    const body = await req.json();
+    const { id } = body;
+
+    if (!id) {
+      return new NextResponse("Id is required", { status: 400 });
+    }
+
+    const post = await prisma.post.delete({
+      where: {
+        id,
+      },
+    });
+
+    return NextResponse.json(post);
+  } catch (error) {
+    console.log("POST DELETE", error);
+    return new NextResponse("Something went wrong", { status: 500 });
+  }
+}

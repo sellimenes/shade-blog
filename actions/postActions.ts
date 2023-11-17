@@ -8,7 +8,7 @@ export const createPost = async (
   categoryId: String
 ) => {
   try {
-    axios.post("/api/post", {
+    await axios.post("/api/post", {
       title,
       content,
       categoryId,
@@ -62,7 +62,11 @@ export const getPost = async (id: String) => {
 
 export const deletePost = async (id: String) => {
   try {
-    axios.delete(`/api/post/${id}`);
+    await axios.delete(`/api/post/${id}`, {
+      data: {
+        id,
+      },
+    });
   } catch (error) {
     console.log(error);
     throw error;

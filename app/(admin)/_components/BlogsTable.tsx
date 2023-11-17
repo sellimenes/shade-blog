@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Switch } from "@/components/ui/switch";
 
-import { getPosts, togglePublishPost } from "@/actions/postActions";
+import { deletePost, getPosts, togglePublishPost } from "@/actions/postActions";
 import Link from "next/link";
 
 type Props = {};
@@ -58,6 +58,11 @@ const BlogsTable = (props: Props) => {
 
   const handleSwitch = async (id: string, published: boolean) => {
     await togglePublishPost(id, published);
+    fetchPosts();
+  };
+
+  const handleDelete = async (id: string) => {
+    await deletePost(id);
     fetchPosts();
   };
 
@@ -99,7 +104,10 @@ const BlogsTable = (props: Props) => {
                 <Link href={`/admin/posts/edit/${post.id}`}>
                   <Pencil className="cursor-pointer w-5 h-5" />
                 </Link>
-                <X className="cursor-pointer text-red-500" />
+                <X
+                  className="cursor-pointer text-red-500"
+                  onClick={() => handleDelete(post.id)}
+                />
               </div>
             </TableCell>
           </TableRow>
