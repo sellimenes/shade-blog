@@ -37,7 +37,6 @@ const AddBlogForm = (props: Props) => {
     const { title, content, categoryId } = postData;
     const res = await createPost(title, content, categoryId);
     router.push("/admin/posts");
-    console.log(res);
   };
   return (
     <div>

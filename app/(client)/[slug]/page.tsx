@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import { Badge } from "@/components/ui/badge";
 import RelatedPosts from "@/components/RelatedPosts";
 
 import { getSinglePost } from "@/actions/postActions";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: {
@@ -11,18 +11,11 @@ type Props = {
   };
 };
 
-type Post = {
-  title: string;
-  slug: string;
-  content: string;
-};
-
 const BlogDetail = async ({ params }: Props) => {
   const post = await getSinglePost(params.slug);
-  console.log(post);
 
   if (!post) {
-    return <div className="container">Post not found.</div>;
+    return notFound();
   }
   return (
     <div className="container flex flex-col-reverse lg:flex-row gap-10">
@@ -59,15 +52,3 @@ const BlogDetail = async ({ params }: Props) => {
 };
 
 export default BlogDetail;
-
-{
-  /* <p className="leading-relaxed opacity-80 my-5">
-Son yılların en tartışmalı yatırım araçları hâline gelen kripto
-varlıklar, uzun zamandır eski popülaritelerinden uzaklar.
-2021&apos;in ikinci yarısında neredeyse 3 trilyon dolarlık hacme
-ulaşan piyasalar, şimdilerde 1 trilyon dolar seviyelerinde
-geziniyorlar. Ancak çok yakında, bu durum değişecek gibi görünüyor.
-Zira Bitcoin (BTC), son dönemlerin en sert yükselişlerinden bir
-tanesine ev sahipliği yaptı.
-</p> */
-}
