@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+import axios from "axios";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,23 +23,38 @@ type Props = {
 };
 
 const AddBlogForm = ({ id }: Props) => {
+  const [loading, setLoading] = useState(false);
+  const [imageFile, setImageFile] = useState<any | undefined>(undefined);
   const router = useRouter();
   const [postData, setPostData] = useState({
     title: "",
     content: "",
     categoryId: "",
-    // image: "",
   });
 
   useEffect(() => {
     console.log(postData);
-  }, [postData]);
+    console.log(imageFile);
+  }, [postData, imageFile]);
 
   const handleCreatePost = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { title, content, categoryId } = postData;
-    const res = await createPost(title, content, categoryId);
-    router.push("/admin/posts");
+    setLoading(true);
+
+    if (!imageFile) return;
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    try {
+      const responseImage = await axios.post("/api/s3-upload", formData);
+      const coverImage = responseImage.data.fileName;
+
+      const { title, content, categoryId } = postData;
+      const res = await createPost(title, content, categoryId, coverImage);
+      router.push("/admin/posts");
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div>
@@ -76,10 +92,13 @@ const AddBlogForm = ({ id }: Props) => {
               }
             />
           </div>
-          <UploadImage className="absolute top-0 right-0" />
+          <UploadImage
+            onImageChange={setImageFile}
+            className="absolute top-0 right-0"
+          />
         </div>
-        <Button className="mt-4" onClick={handleCreatePost}>
-          Publish
+        <Button className="mt-4" onClick={handleCreatePost} disabled={loading}>
+          {loading ? "Loading..." : "Create"}
         </Button>
       </form>
     </div>
