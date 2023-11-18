@@ -6,16 +6,18 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   className?: string;
+  onImageChange: (image: any) => void;
 };
 
-const UploadImage = ({ className }: Props) => {
+const UploadImage = ({ className, onImageChange }: Props) => {
   const [image, setImage] = useState<string | undefined>(undefined);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setImage(URL.createObjectURL(e.target.files[0]));
-      console.log(e.target.files);
+      const newImage = URL.createObjectURL(e.target.files[0]);
+      setImage(newImage);
+      onImageChange(e.target.files[0]);
     }
   };
 

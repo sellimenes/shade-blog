@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: ["localhost", "shadeblog.s3.eu-central-1.amazonaws.com"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -3,42 +3,23 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prismadb";
 
 export const createPost = async (
-  title: String,
-  content: String,
-  categoryId: String
+  title: string,
+  content: string,
+  categoryId: string,
+  coverImage: string
 ) => {
   try {
     await axios.post("/api/post", {
       title,
       content,
       categoryId,
+      coverImage,
     });
   } catch (error) {
     console.log(error);
     throw error;
   }
 };
-
-// export async function getPosts() {
-//   try {
-//     const posts = await prisma.post.findMany({
-//       include: {
-//         category: true,
-//       },
-//     });
-
-//     // Her post için sadece kategori ismini al
-//     const postsWithCategoryName = posts.map((post) => ({
-//       ...post,
-//       category: post.category ? post.category.name : null,
-//     }));
-
-//     return postsWithCategoryName;
-//   } catch (error) {
-//     console.log("POST GET", error);
-//     throw new Error("Something went wrong");
-//   }
-// }
 
 export async function getPosts() {
   try {
