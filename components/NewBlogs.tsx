@@ -3,7 +3,6 @@ import { Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import moment from "moment";
-import { cache } from "react";
 
 import prisma from "@/lib/prismadb";
 
@@ -13,7 +12,7 @@ type Props = {
   className?: string;
 };
 
-const getPosts = cache(async () => {
+const getPosts = async () => {
   const posts = await prisma.post.findMany({
     where: {
       published: true,
@@ -27,7 +26,7 @@ const getPosts = cache(async () => {
     },
   });
   return posts;
-});
+};
 
 const NewBlogs = async ({ className }: Props) => {
   const posts = await getPosts();
