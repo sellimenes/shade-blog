@@ -56,7 +56,7 @@ const Headline = async (props: Props) => {
         </Link>
       ))}
       <div className="flex-[2] flex flex-col gap-4">
-        {posts.slice(1).map((post) => (
+        {posts.slice(1).map((post: any) => (
           <Link
             href={post.slug}
             className="flex-[4] relative rounded-2xl overflow-hidden headlineAfter"
