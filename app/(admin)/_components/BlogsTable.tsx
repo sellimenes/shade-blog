@@ -66,8 +66,6 @@ const BlogsTable = (props: Props) => {
     fetchPosts();
   };
 
-  console.log("test");
-
   return (
     <Table className="mt-2">
       <TableHeader>

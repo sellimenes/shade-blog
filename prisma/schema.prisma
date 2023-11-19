@@ -13,7 +13,7 @@ model Post {
   updatedAt   DateTime  @updatedAt
   title       String
   content     String?
-  coverImage  String?
+  coverImage  String    @default("https://shadeblog.s3.eu-central-1.amazonaws.com/background.webp")
   slug        String    @unique
   published   Boolean   @default(false)
   category    Category? @relation(fields: [categoryId], references: [id])

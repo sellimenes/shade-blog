@@ -30,7 +30,7 @@ const BlogDetail = async ({ params }: Props) => {
           </p>
           <div className="relative w-full aspect-video mb-6">
             <Image
-              src={"/finance-demo-3.jpeg"}
+              src={post.coverImage}
               alt="blog title"
               fill
               loading="lazy"
