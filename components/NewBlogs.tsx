@@ -25,7 +25,7 @@ const SingleBlogCard = () => {
     <Link href={"/asd"} className="p-3 border rounded-lg">
       <div className="relative aspect-video">
         <Image
-          src="/finance-demo-2.png"
+          src="https://shadeblog.s3.eu-central-1.amazonaws.com/background.webp"
           sizes="100%"
           alt="blog title"
           fill
