@@ -7,7 +7,7 @@ import { cache } from "react";
 
 import prisma from "@/lib/prismadb";
 
-export const revalidate = 10;
+export const revalidate = 60;
 
 type Props = {
   className?: string;
