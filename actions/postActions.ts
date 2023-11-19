@@ -21,9 +21,13 @@ export const createPost = async (
   }
 };
 
-export async function getPosts() {
+export async function getPosts(isHero: boolean = false) {
   try {
-    const response = await axios.get("/api/post");
+    const response = await axios.get("/api/post", {
+      data: {
+        isHero,
+      },
+    });
     return response.data;
   } catch (error) {
     console.log(error);
