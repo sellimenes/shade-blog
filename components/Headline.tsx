@@ -2,12 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock } from "lucide-react";
 import moment from "moment";
+import { cache } from "react";
 
 import prisma from "@/lib/prismadb";
 
+export const revalidate = 10;
+
 type Props = {};
 
-const getPosts = async () => {
+const getPosts = cache(async () => {
   const posts = await prisma.post.findMany({
     where: {
       published: true,
@@ -21,7 +24,7 @@ const getPosts = async () => {
     },
   });
   return posts;
-};
+});
 
 const Headline = async (props: Props) => {
   const posts = await getPosts();

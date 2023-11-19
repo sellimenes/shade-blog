@@ -1,31 +1,53 @@
 import { cn } from "@/lib/utils";
-import { Clock, MoveRight } from "lucide-react";
+import { Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import moment from "moment";
+import { cache } from "react";
+
+import prisma from "@/lib/prismadb";
+
+export const revalidate = 10;
 
 type Props = {
   className?: string;
 };
 
-const NewBlogs = ({ className }: Props) => {
+const getPosts = cache(async () => {
+  const posts = await prisma.post.findMany({
+    where: {
+      published: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    skip: 3,
+    include: {
+      category: true,
+    },
+  });
+  return posts;
+});
+
+const NewBlogs = async ({ className }: Props) => {
+  const posts = await getPosts();
   return (
     <section className={cn("", className)}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, i) => (
-          <SingleBlogCard key={i} />
+        {posts.map((post) => (
+          <SingleBlogCard key={post.id} post={post} />
         ))}
       </div>
     </section>
   );
 };
 
-const SingleBlogCard = () => {
+const SingleBlogCard = ({ post }: any) => {
   return (
-    <Link href={"/asd"} className="p-3 border rounded-lg">
+    <Link href={post.slug} className="p-3 border rounded-lg">
       <div className="relative aspect-video">
         <Image
-          src="https://shadeblog.s3.eu-central-1.amazonaws.com/background.webp"
+          src={post.coverImage}
           sizes="100%"
           alt="blog title"
           fill
@@ -34,16 +56,16 @@ const SingleBlogCard = () => {
           quality={70}
         />
         <p className="absolute z-50 bottom-5 lg:bottom-8 left-0 p-2 bg-green-700 text-white lg:text-md text-sm rounded-r">
-          Finance
+          {post.category?.name}
         </p>
       </div>
       <h3 className="mt-4 mb-1 leading-5 line-clamp-2 hover:text-orange-700">
-        Health Tips and Benefits of Healthy Lifestyle You Should Consider
+        {post.title}
       </h3>
       <p className="text-xs opacity-75 flex lg:items-center lg:gap-4 whitespace-nowrap flex-col lg:flex-row">
         Selim Enes Erdogan{" "}
         <span className="flex items-center gap-1 mt-[2px]">
-          <Clock size={12} className="mb-[2px]" /> 18.03.2021
+          <Clock size={12} /> {moment(post.createdAt).format("DD.MM.YYYY")}
         </span>
       </p>
     </Link>

@@ -19,6 +19,7 @@ export async function POST(req: Request) {
       Ş: "S",
       ü: "u",
       Ü: "U",
+      ":": "",
     };
 
     let slug = title.toLowerCase();

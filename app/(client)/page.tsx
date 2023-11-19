@@ -1,7 +1,6 @@
 import Headline from "@/components/Headline";
 import NewBlogs from "@/components/NewBlogs";
 import { MoveRight } from "lucide-react";
-import Image from "next/image";
 
 export default function Home() {
   return (
