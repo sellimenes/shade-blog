@@ -3,33 +3,25 @@ import Link from "next/link";
 import { Clock } from "lucide-react";
 import moment from "moment";
 
-import prisma from "@/lib/prismadb";
-
 export const revalidate = 60;
 
 type Props = {};
 
-const getPosts = async () => {
-  const posts = await prisma.post.findMany({
-    where: {
-      published: true,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-    take: 3,
-    include: {
-      category: true,
+const fetchHeadline = async () => {
+  const posts = await fetch("http://localhost:3000/api/post?isHero=true", {
+    method: "GET",
+    next: {
+      revalidate: 60,
     },
   });
-  return posts;
+  return posts.json();
 };
 
 const Headline = async (props: Props) => {
-  const posts = await getPosts();
+  const posts = await fetchHeadline();
   return (
     <section className="flex flex-col md:flex-row gap-4 container">
-      {posts.slice(0, 1).map((post) => (
+      {posts.slice(0, 1).map((post: any) => (
         <Link
           href={post.slug}
           className="flex-[4] relative rounded-2xl overflow-hidden headlineAfter"

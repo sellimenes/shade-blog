@@ -4,36 +4,28 @@ import Image from "next/image";
 import Link from "next/link";
 import moment from "moment";
 
-import prisma from "@/lib/prismadb";
-
 export const revalidate = 60;
 
 type Props = {
   className?: string;
 };
 
-const getPosts = async () => {
-  const posts = await prisma.post.findMany({
-    where: {
-      published: true,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-    skip: 3,
-    include: {
-      category: true,
+const fetchLatestBlogs = async () => {
+  const posts = await fetch("http://localhost:3000/api/post?isLatest=true", {
+    method: "GET",
+    next: {
+      revalidate: 60,
     },
   });
-  return posts;
+  return posts.json();
 };
 
 const NewBlogs = async ({ className }: Props) => {
-  const posts = await getPosts();
+  const posts = await fetchLatestBlogs();
   return (
     <section className={cn("", className)}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-        {posts.map((post) => (
+        {posts.map((post: any) => (
           <SingleBlogCard key={post.id} post={post} />
         ))}
       </div>

@@ -68,7 +68,10 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET() {
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const isHero = searchParams.get("isHero");
+  const isLatest = searchParams.get("isLatest");
   try {
     const posts = await prisma.post.findMany({
       include: {
@@ -77,6 +80,8 @@ export async function GET() {
       orderBy: {
         createdAt: "desc",
       },
+      skip: isLatest ? 3 : 0,
+      take: isHero ? 3 : undefined,
     });
     return NextResponse.json(posts);
   } catch (error) {
