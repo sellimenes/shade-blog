@@ -4,24 +4,32 @@ import Image from "next/image";
 import Link from "next/link";
 import moment from "moment";
 
+import prisma from "@/lib/prismadb";
+
 export const revalidate = 60;
 
 type Props = {
   className?: string;
 };
 
-const fetchLatestBlogs = async () => {
-  const posts = await fetch("http://localhost:3000/api/post?isLatest=true", {
-    method: "GET",
-    next: {
-      revalidate: 60,
+const getPosts = async () => {
+  const posts = await prisma.post.findMany({
+    where: {
+      published: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    skip: 3,
+    include: {
+      category: true,
     },
   });
-  return posts.json();
+  return posts;
 };
 
 const NewBlogs = async ({ className }: Props) => {
-  const posts = await fetchLatestBlogs();
+  const posts = await getPosts();
   return (
     <section className={cn("", className)}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
