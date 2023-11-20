@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 
 import RelatedPosts from "@/components/RelatedPosts";
@@ -12,11 +12,14 @@ type Props = {
   };
 };
 
-export const generateMetadata = (post: any): Metadata => {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = await getSinglePost(params.slug);
+
   return {
-    title: `${post.title}`,
+    title: `${post?.title} | WOblog`,
+    description: post?.content?.slice(0, 100),
   };
-};
+}
 
 const BlogDetail = async ({ params }: Props) => {
   const post = await getSinglePost(params.slug);
@@ -25,7 +28,6 @@ const BlogDetail = async ({ params }: Props) => {
     return notFound();
   }
 
-  const metadata = generateMetadata(post);
   return (
     <div className="container flex flex-col-reverse lg:flex-row gap-10">
       <div className="flex-1">

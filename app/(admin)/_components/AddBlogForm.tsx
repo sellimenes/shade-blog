@@ -16,7 +16,7 @@ const TextEditor = dynamic(() => import("@/components/TextEditor"), {
   ssr: false,
 });
 
-import { createPost } from "@/actions/postActions";
+import { createPost, getSinglePost } from "@/actions/postActions";
 
 type Props = {
   id?: string;
@@ -52,6 +52,25 @@ const AddBlogForm = ({ id }: Props) => {
       setLoading(false);
     }
   };
+
+  const getEditPost = async ({ id }: Props) => {
+    if (!id) return;
+    const post = await axios.get(`/api/post/${id}`);
+    const { data } = post;
+    if (!post) return;
+    const { title, content, categoryId } = data;
+    if (content && title && categoryId) {
+      setPostData({
+        title,
+        content,
+        categoryId,
+      });
+    }
+  };
+
+  useEffect(() => {
+    getEditPost({ id });
+  }, []);
   return (
     <div>
       <h2 className="text-3xl">All Posts</h2>
@@ -67,6 +86,7 @@ const AddBlogForm = ({ id }: Props) => {
             onChange={(e) =>
               setPostData({ ...postData, title: e.target.value })
             }
+            value={postData.title}
           />
         </div>
         <div className="mt-4 flex flex-col gap-1">
@@ -86,6 +106,7 @@ const AddBlogForm = ({ id }: Props) => {
               onChange={(categoryId) =>
                 setPostData({ ...postData, categoryId })
               }
+              valueProp={postData?.categoryId}
             />
           </div>
           <UploadImage

@@ -28,12 +28,13 @@ type Category = {
 
 type Props = {
   onChange: (value: string) => void;
+  valueProp?: string; // valueProp for the edit the post page.
 };
 
-function SelectCategoryCombobox({ onChange }: Props) {
+function SelectCategoryCombobox({ onChange, valueProp }: Props) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const handleGetCategories = async () => {
     const fetchedCategories = await getCategories();
@@ -42,7 +43,15 @@ function SelectCategoryCombobox({ onChange }: Props) {
 
   useEffect(() => {
     handleGetCategories();
-  }, []);
+
+    // Set value if valueProp is passed
+    if (valueProp != undefined && valueProp.length > 0) {
+      console.log(valueProp);
+      setValue(
+        categories.find((category) => category.id === valueProp)?.name ?? ""
+      );
+    }
+  }, [valueProp]);
 
   function capitalizeFirstLetter(string: string): string {
     return string[0].toUpperCase() + string.slice(1);

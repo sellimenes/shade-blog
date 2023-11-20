@@ -1,5 +1,4 @@
 import AddBlogForm from "@/app/(admin)/_components/AddBlogForm";
-import React from "react";
 
 type Props = {
   params: {
@@ -7,7 +6,9 @@ type Props = {
   };
 };
 
-const page = ({ params }: Props) => {
+// TODO: Quill value ve görsel datası gelmiyor henüz.
+
+const page = async ({ params }: Props) => {
   return <AddBlogForm id={params.id} />;
 };
 
