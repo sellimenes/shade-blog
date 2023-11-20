@@ -9,24 +9,23 @@ export const revalidate = 60;
 
 type Props = {};
 
-const getPosts = async () => {
-  const posts = await prisma.post.findMany({
-    where: {
-      published: true,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-    take: 3,
-    include: {
-      category: true,
-    },
-  });
-  return posts;
-};
-
 const Headline = async (props: Props) => {
-  const posts = await getPosts();
+  const headlinePosts = async () => {
+    const posts = await prisma.post.findMany({
+      where: {
+        published: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 3,
+      include: {
+        category: true,
+      },
+    });
+    return posts;
+  };
+  const posts = await headlinePosts();
   return (
     <section className="flex flex-col md:flex-row gap-4 container">
       {posts.slice(0, 1).map((post: any) => (
