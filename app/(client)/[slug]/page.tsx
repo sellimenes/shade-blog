@@ -1,13 +1,20 @@
 import Image from "next/image";
-import React from "react";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+
 import RelatedPosts from "@/components/RelatedPosts";
 
 import { getSinglePost } from "@/actions/postActions";
-import { notFound } from "next/navigation";
 
 type Props = {
   params: {
     slug: string;
+  };
+};
+
+export const generateMetadata = (post: any): Metadata => {
+  return {
+    title: `${post.title}`,
   };
 };
 
@@ -17,10 +24,12 @@ const BlogDetail = async ({ params }: Props) => {
   if (!post) {
     return notFound();
   }
+
+  const metadata = generateMetadata(post);
   return (
     <div className="container flex flex-col-reverse lg:flex-row gap-10">
       <div className="flex-1">
-        <article>
+        <article className="mb-8">
           <h1 className="text-3xl font-bold">{post.title}</h1>
           <p className="opacity-70 mt-2 mb-4">
             Geçtiğimiz saatlerde sert bir yükseliş gösteren Bitcoin (BTC), 35

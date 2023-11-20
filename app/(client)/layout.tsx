@@ -1,16 +1,18 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../globals.css";
+import type { Metadata } from "next";
+import ReduxProvider from "@/store/ReduxProvider";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import ReduxProvider from "@/store/ReduxProvider";
+
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Shade Blog",
-  description: "Coded by Selim Enes",
+  title: "WOBlog",
+  description: "WOBlog - World of blogs",
 };
 
 export default function RootLayout({
