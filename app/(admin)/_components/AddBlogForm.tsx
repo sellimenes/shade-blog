@@ -17,6 +17,7 @@ const TextEditor = dynamic(() => import("@/components/TextEditor"), {
 });
 
 import { createPost } from "@/actions/postActions";
+import { revalidatePath } from "next/cache";
 
 type Props = {
   id?: string;
@@ -32,11 +33,6 @@ const AddBlogForm = ({ id }: Props) => {
     categoryId: "",
   });
 
-  useEffect(() => {
-    console.log(postData);
-    console.log(imageFile);
-  }, [postData, imageFile]);
-
   const handleCreatePost = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -51,6 +47,7 @@ const AddBlogForm = ({ id }: Props) => {
       const { title, content, categoryId } = postData;
       const res = await createPost(title, content, categoryId, coverImage);
       router.push("/admin/posts");
+      revalidatePath("/", "page");
     } catch (error) {
     } finally {
       setLoading(false);
