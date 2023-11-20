@@ -2,6 +2,8 @@ import Headline from "@/components/Headline";
 import NewBlogs from "@/components/NewBlogs";
 import { MoveRight } from "lucide-react";
 
+export const revalidate = 60;
+
 export default function Home() {
   return (
     <div>
