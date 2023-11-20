@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
 import { Pencil, X } from "lucide-react";
+import Link from "next/link";
 
 import {
   Table,
@@ -21,8 +22,6 @@ import {
 import { Switch } from "@/components/ui/switch";
 
 import { deletePost, getPosts, togglePublishPost } from "@/actions/postActions";
-import Link from "next/link";
-import { revalidatePath } from "next/cache";
 
 type Props = {};
 
@@ -60,13 +59,13 @@ const BlogsTable = (props: Props) => {
   const handleSwitch = async (id: string, published: boolean) => {
     await togglePublishPost(id, published);
     await fetchPosts();
-    revalidatePath("/", "page");
+    // revalidatePath("/", "page");
   };
 
   const handleDelete = async (id: string) => {
     await deletePost(id);
     await fetchPosts();
-    revalidatePath("/", "page");
+    // revalidatePath("/", "page");
   };
 
   return (
