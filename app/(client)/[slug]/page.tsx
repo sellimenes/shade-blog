@@ -44,7 +44,7 @@ const BlogDetail = async ({ params }: Props) => {
             />
           )}
         </article>
-        <RelatedPosts />
+        <RelatedPosts categoryId={post.categoryId} postId={post.id} />
       </div>
       <div className="w-[300px] h-[250px] bg-red-500 lg:mt-11 lg:sticky top-5"></div>
     </div>

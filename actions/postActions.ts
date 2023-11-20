@@ -35,6 +35,7 @@ export async function getPosts(isHero: boolean = false) {
   }
 }
 
+// Not used yet
 export const getPost = async (id: String) => {
   try {
     const response = await axios.get(`/api/post/${id}`);

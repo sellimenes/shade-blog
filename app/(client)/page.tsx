@@ -2,7 +2,8 @@ import Headline from "@/components/Headline";
 import NewBlogs from "@/components/NewBlogs";
 import { MoveRight } from "lucide-react";
 
-export const revalidate = 60;
+export const revalidate = 60; // Re-fetch data every 60 seconds.
+// TODO: Make revalidate higher when in production.
 
 export default function Home() {
   return (

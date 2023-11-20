@@ -28,6 +28,7 @@ const Header = (props: Props) => {
     const fetchedCategories = await getCategories();
     setCategories(fetchedCategories);
   };
+
   useEffect(() => {
     handleGetCategories();
   }, []);

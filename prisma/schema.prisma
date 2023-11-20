@@ -17,7 +17,7 @@ model Post {
   slug        String    @unique
   published   Boolean   @default(false)
   category    Category? @relation(fields: [categoryId], references: [id])
-  categoryId  String?   @db.ObjectId
+  categoryId  String   @db.ObjectId
 }
 
 model Category {

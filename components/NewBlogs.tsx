@@ -6,29 +6,29 @@ import moment from "moment";
 
 import prisma from "@/lib/prismadb";
 
-export const revalidate = 60;
-
 type Props = {
   className?: string;
 };
 
+const latestBlogs = async () => {
+  const posts = await prisma.post.findMany({
+    where: {
+      published: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    skip: 3,
+    include: {
+      category: true,
+    },
+  });
+  return posts;
+};
+
 const NewBlogs = async ({ className }: Props) => {
-  const latestBlogs = async () => {
-    const posts = await prisma.post.findMany({
-      where: {
-        published: true,
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-      skip: 3,
-      include: {
-        category: true,
-      },
-    });
-    return posts;
-  };
   const posts = await latestBlogs();
+
   return (
     <section className={cn("", className)}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
