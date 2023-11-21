@@ -20,6 +20,15 @@ export async function POST(req: Request) {
       ü: "u",
       Ü: "U",
       ":": "",
+      ";": "",
+      ".": "",
+      ",": "",
+      "'": "",
+      '"': "",
+      "’": "",
+      "“": "",
+      "”": "",
+      "?": "",
     };
 
     let slug = title.toLowerCase();
