@@ -173,6 +173,11 @@
   @apply leading-relaxed opacity-80 mb-3;
 }
 
+.postWrapper img {
+  width: 100%;
+  height: auto;
+}
+
 .postWrapper h1,
 .postWrapper h2,
 .postWrapper h3,

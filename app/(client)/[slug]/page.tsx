@@ -33,20 +33,8 @@ const BlogDetail = async ({ params }: Props) => {
       <div className="flex-1">
         <article className="mb-8">
           <h1 className="text-3xl font-bold">{post.title}</h1>
-          <p className="opacity-70 mt-2 mb-4">
-            Geçtiğimiz saatlerde sert bir yükseliş gösteren Bitcoin (BTC), 35
-            bin dolara iğne attı. Bu seviye, en son Mayıs 2022&apos;de
-            görülmüştü. BTC&apos;deki yükseliş, altcoin&apos;leri de
-            canlandırdı.
-          </p>
           <div className="relative w-full aspect-video mb-6">
-            <Image
-              src={post.coverImage}
-              alt="blog title"
-              fill
-              loading="lazy"
-              quality={70}
-            />
+            <Image src={post.coverImage} alt={post.title} fill quality={70} />
           </div>
           {post.content && (
             <div

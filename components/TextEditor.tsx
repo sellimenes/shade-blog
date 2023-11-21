@@ -1,11 +1,31 @@
 "use client";
 
+import axios from "axios";
 import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 type Props = {
   onChange: (value: string) => void;
+};
+
+// TODO: React Quill Image Upload will be added...
+const imageHandler = () => {
+  const input = document.createElement("input");
+
+  input.setAttribute("type", "file");
+  input.setAttribute("accept", "image/*");
+  input.click();
+
+  input.onchange = async () => {
+    let file: any = input.files != null && input.files[0];
+    let formData = new FormData();
+    formData.append("file", file);
+
+    const responseImage = await axios.post("/api/s3-upload", formData);
+    const imgUrl = responseImage.data.fileName;
+    console.log(imgUrl);
+  };
 };
 
 const modules = {

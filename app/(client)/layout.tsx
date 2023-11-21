@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import ReduxProvider from "@/store/ReduxProvider";
 
@@ -7,8 +7,6 @@ import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 import "../globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "WOBlog",
@@ -22,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={GeistSans.className}>
         <ReduxProvider>
           <ThemeProvider
             attribute="class"
