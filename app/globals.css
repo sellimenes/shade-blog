@@ -178,6 +178,11 @@
   height: auto;
 }
 
+.postWrapper .ql-video {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
 .postWrapper h1,
 .postWrapper h2,
 .postWrapper h3,
