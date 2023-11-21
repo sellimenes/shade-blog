@@ -4,6 +4,7 @@ import ReduxProvider from "@/store/ReduxProvider";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 import "../globals.css";
@@ -21,6 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+          <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+        ) : null}
         <ReduxProvider>
           <ThemeProvider
             attribute="class"
