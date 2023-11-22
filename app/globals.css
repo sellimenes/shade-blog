@@ -198,7 +198,7 @@ article h1 {
 .postWrapper h4,
 .postWrapper h5,
 .postWrapper h6 {
-  @apply font-bold mt-2 flex items-center;
+  @apply font-bold mt-2 flex items-center !leading-7 opacity-80;
 }
 
 .postWrapper h1 {
@@ -226,7 +226,7 @@ article h1 {
 }
 
 .postWrapper h2::before {
-  @apply block w-2 h-9 mr-2 bg-orange-500;
+  @apply block w-2 h-14 md:h-8 mr-2 bg-orange-500 min-w-[0.5rem];
   content: "";
 }
 /* Single Post content end */
