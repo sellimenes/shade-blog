@@ -19,17 +19,6 @@ export async function POST(req: Request) {
       Ş: "S",
       ü: "u",
       Ü: "U",
-      ":": "",
-      ";": "",
-      ".": "",
-      ",": "",
-      "'": "",
-      '"': "",
-      "’": "",
-      "“": "",
-      "”": "",
-      "!": "",
-      " ": "-",
     };
 
     let slug = title.toLowerCase();
@@ -40,7 +29,7 @@ export async function POST(req: Request) {
 
     slug = slug.replace(/\s/g, "-");
 
-    if (!title || !content || !categoryId || !coverImage) {
+    if (!title || !content || !categoryId || !coverImage || !slug) {
       return new NextResponse("All fields are required", { status: 400 });
     }
 

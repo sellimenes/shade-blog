@@ -46,7 +46,6 @@ const AddBlogForm = ({ id }: Props) => {
       const { title, content, categoryId } = postData;
       const res = await createPost(title, content, categoryId, coverImage);
       router.push("/admin/posts");
-      // revalidatePath("/", "page");
     } catch (error) {
     } finally {
       setLoading(false);
