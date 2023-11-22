@@ -22,6 +22,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 
 import { deletePost, getPosts, togglePublishPost } from "@/actions/postActions";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 type Props = {};
 
@@ -46,10 +47,13 @@ type Post = {
 
 const BlogsTable = (props: Props) => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchPosts = async () => {
+    setLoading(true);
     const posts = await getPosts();
     setPosts(posts);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -67,6 +71,8 @@ const BlogsTable = (props: Props) => {
     await fetchPosts();
     // revalidatePath("/", "page");
   };
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <Table className="mt-2">
