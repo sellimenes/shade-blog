@@ -27,7 +27,8 @@ export async function POST(req: Request) {
       slug = slug.replace(new RegExp(char, "g"), turkishToEnglish[char]);
     }
 
-    slug = slug.replace(/\s/g, "-");
+    slug = slug.replace(/\s/g, "-"); // Replace spaces with -
+    slug = slug.replace(/[ \t\n\r:,?!.();]/g, ""); // Remove all non-word chars
 
     if (!title || !content || !categoryId || !coverImage || !slug) {
       return new NextResponse("All fields are required", { status: 400 });
