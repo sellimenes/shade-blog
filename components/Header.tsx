@@ -22,16 +22,16 @@ type Category = {
 };
 
 const Header = (props: Props) => {
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
 
-  const handleGetCategories = async () => {
-    const fetchedCategories = await getCategories();
-    setCategories(fetchedCategories);
-  };
+  // const handleGetCategories = async () => {
+  //   const fetchedCategories = await getCategories();
+  //   setCategories(fetchedCategories);
+  // };
 
-  useEffect(() => {
-    handleGetCategories();
-  }, []);
+  // useEffect(() => {
+  //   handleGetCategories();
+  // }, []);
 
   return (
     <header className="container my-2 h-16 flex items-center justify-between">
@@ -40,7 +40,7 @@ const Header = (props: Props) => {
       </h1>
 
       <div className="ml-auto mr-4">
-        <DropdownMenu>
+        {/* <DropdownMenu>
           <DropdownMenuTrigger>Categories</DropdownMenuTrigger>
           <DropdownMenuContent>
             {categories.map((category: Category) => (
@@ -49,7 +49,7 @@ const Header = (props: Props) => {
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
       </div>
       <ThemeToggle />
     </header>
