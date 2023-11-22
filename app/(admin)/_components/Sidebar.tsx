@@ -5,6 +5,7 @@ import {
   ArrowDownLeftFromCircle,
   CircleDollarSign,
   Group,
+  Image,
   LayoutDashboard,
   Newspaper,
 } from "lucide-react";
@@ -117,6 +118,25 @@ const Sidebar = (props: Props) => {
               )}
             />
             Categories
+          </li>
+        </Link>
+        <Link
+          href="/gallery"
+          className={cn(
+            "flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer",
+            url === "/gallery"
+              ? "bg-[#666cff] text-white"
+              : "hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]"
+          )}
+        >
+          <li className="flex items-center gap-3 px-5">
+            <Image
+              className={cn(
+                "cursor-pointer transition-all duration-300",
+                open ? "w-5 h-5" : "w-6 h-6 ml-[-8px]"
+              )}
+            />
+            Media Gallery
           </li>
         </Link>
       </ul>
