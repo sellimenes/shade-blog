@@ -61,7 +61,7 @@ const SingleBlogCard = ({ post }: any) => {
         {post.title}
       </h3>
       <p className="text-xs opacity-75 flex lg:items-center lg:gap-4 whitespace-nowrap flex-col lg:flex-row">
-        Selim Enes Erdogan{" "}
+        Cedric{" "}
         <span className="flex items-center gap-1 mt-[2px]">
           <Clock size={12} /> {moment(post.createdAt).format("DD.MM.YYYY")}
         </span>

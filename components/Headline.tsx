@@ -49,7 +49,7 @@ const Headline = async (props: Props) => {
                 {post.title}
               </h2>
               <p className="text-xs opacity-75 flex items-center gap-4 whitespace-nowrap">
-                Selim Enes Erdogan{" "}
+                Cedric{" "}
                 <span className="flex items-center gap-1 mt-[2px]">
                   <Clock size={12} />
                   {moment(post.createdAt).format("DD.MM.YYYY")}
@@ -84,7 +84,7 @@ const Headline = async (props: Props) => {
                   {post.title}
                 </h2>
                 <p className="text-xs opacity-75 flex items-center gap-4 whitespace-nowrap">
-                  Selim Enes Erdogan{" "}
+                  Cedric{" "}
                   <span className="flex items-center gap-1 mt-[2px]">
                     <Clock size={12} />
                     {moment(post.createdAt).format("DD.MM.YYYY")}
