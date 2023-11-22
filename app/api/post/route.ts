@@ -28,7 +28,8 @@ export async function POST(req: Request) {
       "’": "",
       "“": "",
       "”": "",
-      "?": "",
+      "!": "",
+      " ": "-",
     };
 
     let slug = title.toLowerCase();
@@ -37,9 +38,9 @@ export async function POST(req: Request) {
       slug = slug.replace(new RegExp(char, "g"), turkishToEnglish[char]);
     }
 
-    slug = slug.replace(/ +/g, "-");
+    slug = slug.replace(/\s/g, "-");
 
-    if (!title || !content || !categoryId) {
+    if (!title || !content || !categoryId || !coverImage) {
       return new NextResponse("All fields are required", { status: 400 });
     }
 
