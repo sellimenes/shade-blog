@@ -2,8 +2,7 @@ import Headline from "@/components/Headline";
 import NewBlogs from "@/components/NewBlogs";
 import { MoveRight } from "lucide-react";
 
-export const revalidate = 60; // Re-fetch data every 60 seconds.
-// TODO: Use revalidatePath later when it's stable.
+export const revalidate = 3600; // Re-fetch data every 1 hour.
 
 export default function Home() {
   return (
