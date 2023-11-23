@@ -45,7 +45,9 @@ const BlogDetail = async ({ params }: Props) => {
         </article>
         <RelatedPosts categoryId={post.categoryId} postId={post.id} />
       </div>
-      <div className="w-[300px] h-[250px] bg-red-500 lg:mt-11 lg:sticky top-5"></div>
+      <div className="w-[300px] h-[250px] bg-red-500 lg:mt-11 lg:sticky top-5 flex justify-center items-center text-white text-2xl font-bold">
+        AD Space
+      </div>
     </div>
   );
 };

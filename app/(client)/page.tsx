@@ -16,7 +16,9 @@ export default function Home() {
           </span>
           <NewBlogs />
         </div>
-        <div className="w-[300px] h-[250px] bg-red-500 mt-11 lg:sticky top-5"></div>
+        <div className="w-[300px] h-[250px] bg-red-500 lg:mt-11 lg:sticky top-5 flex justify-center items-center text-white text-2xl font-bold">
+          AD Space
+        </div>
       </div>
     </div>
   );
