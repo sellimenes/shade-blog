@@ -15,15 +15,23 @@ import HamburgerButton from "@/components/ui/hamburger-button";
 import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "@/components/ThemeToggle";
 import { usePathname } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
+import { Button } from "@/components/ui/button";
 
 type Props = {};
 
 const Sidebar = (props: Props) => {
+  const session = useSession();
   const url = usePathname();
   const [open, setOpen] = useState(true);
 
+  const handleLogout = () => {
+    signOut();
+  };
+
   const toggleSidebar = () => {
     setOpen(!open);
+    console.log(session);
   };
   return (
     <aside
@@ -142,10 +150,20 @@ const Sidebar = (props: Props) => {
       </ul>
       <ThemeToggle
         className={cn(
-          "mt-auto p-5 transition-all duration-300",
-          !open ? "-ml-4" : ""
+          "mt-auto p-5 pb-2 transition-all duration-300",
+          !open ? "-ml-[1.07rem]" : ""
         )}
       />
+      <Button
+        variant="outline"
+        className={cn(
+          "mb-2 ml-5 max-w-max transition-all duration-300",
+          !open ? "ml-[2px]" : ""
+        )}
+        onClick={handleLogout}
+      >
+        {open ? "Logout" : "L"}
+      </Button>
     </aside>
   );
 };

@@ -38,7 +38,7 @@ const UploadImage = ({ className, onImageChange }: Props) => {
   return (
     <div
       className={cn(
-        "mt-4 max-w-md bg-primary rounded-lg shadow-md p-4 cursor-pointer",
+        "mt-4 max-w-md bg-orange-500 rounded-lg shadow-md p-2 cursor-pointer",
         className
       )}
       onClick={handleClick}

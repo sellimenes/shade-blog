@@ -1,6 +1,7 @@
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import ReduxProvider from "@/store/ReduxProvider";
+import AuthContext from "@/lib/AuthContext";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -25,18 +26,20 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
         ) : null}
-        <ReduxProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </ThemeProvider>
-        </ReduxProvider>
+        <AuthContext>
+          <ReduxProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </ThemeProvider>
+          </ReduxProvider>
+        </AuthContext>
       </body>
     </html>
   );
