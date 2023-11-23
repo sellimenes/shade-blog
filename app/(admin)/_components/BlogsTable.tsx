@@ -19,6 +19,18 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 import { Switch } from "@/components/ui/switch";
 
 import { deletePost, getPosts, togglePublishPost } from "@/actions/postActions";
@@ -108,15 +120,34 @@ const BlogsTable = (props: Props) => {
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-              {/* <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <Link href={`/admin/posts/edit/${post.id}`}>
                   <Pencil className="cursor-pointer w-5 h-5" />
                 </Link>
-                <X
-                  className="cursor-pointer text-red-500"
-                  onClick={() => handleDelete(post.id)}
-                />
-              </div> */}
+
+                <AlertDialog>
+                  <AlertDialogTrigger>
+                    <X className="cursor-pointer text-red-500" />
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Are you absolutely sure?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete the post and remove data from the server.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={() => handleDelete(post.id)}>
+                        Continue
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
             </TableCell>
           </TableRow>
         ))}
