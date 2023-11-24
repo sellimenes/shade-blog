@@ -55,10 +55,12 @@ const Header = (props: Props) => {
           <DropdownMenuTrigger>Categories</DropdownMenuTrigger>
           <DropdownMenuContent>
             {categories.map((category: Category) => (
-              <Link href={`/${category.slug}`} className="cursor-pointer">
-                <DropdownMenuItem key={category.id}>
-                  {category.name}
-                </DropdownMenuItem>
+              <Link
+                href={`/${category.slug}`}
+                key={category.id}
+                className="cursor-pointer"
+              >
+                <DropdownMenuItem>{category.name}</DropdownMenuItem>
               </Link>
             ))}
           </DropdownMenuContent>
