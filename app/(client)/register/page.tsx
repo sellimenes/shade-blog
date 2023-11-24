@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -17,6 +18,7 @@ const page = (props: Props) => {
 };
 
 const RegisterForm = (props: Props) => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,6 +33,7 @@ const RegisterForm = (props: Props) => {
       name,
     });
     setIsLoading(false);
+    router.push("/");
   };
   return (
     <div className="w-[350px] border p-5 rounded-lg shadow-xl absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">

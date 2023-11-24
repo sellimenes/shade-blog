@@ -9,9 +9,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 
 import { getCategories } from "@/actions/categoryActions";
+import { signOut, useSession } from "next-auth/react";
 
 type Props = {};
 
@@ -22,6 +24,7 @@ type Category = {
 };
 
 const Header = (props: Props) => {
+  const session = useSession();
   // const [categories, setCategories] = useState([]);
 
   // const handleGetCategories = async () => {
@@ -40,6 +43,14 @@ const Header = (props: Props) => {
       </h1>
 
       <div className="ml-auto mr-4">
+        {session.status === "authenticated" && (
+          <div className="flex items-center gap-2">
+            <Link href={"/admin"}>Admin</Link>
+            <Button variant={"ghost"} onClick={() => signOut()}>
+              Logout
+            </Button>
+          </div>
+        )}
         {/* <DropdownMenu>
           <DropdownMenuTrigger>Categories</DropdownMenuTrigger>
           <DropdownMenuContent>

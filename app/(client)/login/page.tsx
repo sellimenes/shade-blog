@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -17,6 +18,7 @@ const LoginPage = (props: Props) => {
 };
 
 const LoginForm = (props: Props) => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,6 +39,7 @@ const LoginForm = (props: Props) => {
       })
       .finally(() => {
         setIsLoading(false);
+        router.push("/");
       });
   };
   return (
@@ -58,7 +61,7 @@ const LoginForm = (props: Props) => {
           onClick={(e) => handleRegister(e)}
           className="mt-1"
         >
-          Login
+          {isLoading ? "Loading..." : "Login"}
         </Button>
       </div>
       <div className="flex items-center justify-center gap-2 my-2">
