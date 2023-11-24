@@ -1,44 +1,56 @@
-import { cn } from "@/lib/utils";
-import { Clock } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import moment from "moment";
-
+import React from "react";
 import prisma from "@/lib/prismadb";
+import Link from "next/link";
+import Image from "next/image";
+import moment from "moment";
+import { Clock } from "lucide-react";
 
 type Props = {
-  className?: string;
+  params: {
+    category: string;
+  };
 };
 
-const latestBlogs = async () => {
+const getCategoryPosts = async (categoryId: any) => {
   const posts = await prisma.post.findMany({
     where: {
       published: true,
+      categoryId,
     },
     orderBy: {
       createdAt: "desc",
     },
-    skip: 3,
     include: {
       category: true,
     },
   });
+
   return posts;
 };
 
-const NewBlogs = async ({ className }: Props) => {
-  const posts = await latestBlogs();
+const getCategoryId = async (categorySlug: string) => {
+  const category = await prisma.category.findUnique({
+    where: {
+      slug: categorySlug,
+    },
+  });
 
+  return category?.id;
+};
+
+const CategoryPage = async ({ params }: Props) => {
+  const categoryId = await getCategoryId(params.category);
+  const posts = await getCategoryPosts(categoryId);
   return (
-    <section className={cn("", className)}>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-        {posts.map((post: any) => (
-          <SingleBlogCard key={post.id} post={post} />
-        ))}
-      </div>
-    </section>
+    <div className="container grid grid-cols-1 lg:grid-cols-3 gap-3">
+      {posts.map((post: any) => (
+        <SingleBlogCard key={post.id} post={post} />
+      ))}
+    </div>
   );
 };
+
+export default CategoryPage;
 
 const SingleBlogCard = ({ post }: any) => {
   return (
@@ -72,5 +84,3 @@ const SingleBlogCard = ({ post }: any) => {
     </Link>
   );
 };
-
-export default NewBlogs;

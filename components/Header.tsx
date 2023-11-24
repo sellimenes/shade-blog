@@ -25,16 +25,16 @@ type Category = {
 
 const Header = (props: Props) => {
   const session = useSession();
-  // const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-  // const handleGetCategories = async () => {
-  //   const fetchedCategories = await getCategories();
-  //   setCategories(fetchedCategories);
-  // };
+  const handleGetCategories = async () => {
+    const fetchedCategories = await getCategories();
+    setCategories(fetchedCategories);
+  };
 
-  // useEffect(() => {
-  //   handleGetCategories();
-  // }, []);
+  useEffect(() => {
+    handleGetCategories();
+  }, []);
 
   return (
     <header className="container my-2 h-16 flex items-center justify-between">
@@ -42,7 +42,7 @@ const Header = (props: Props) => {
         <Link href={"/"}>WOBLOG</Link>
       </h1>
 
-      <div className="ml-auto mr-4">
+      <div className="ml-auto mr-4 flex items-center">
         {session.status === "authenticated" && (
           <div className="flex items-center gap-2">
             <Link href={"/admin"}>Admin</Link>
@@ -51,16 +51,18 @@ const Header = (props: Props) => {
             </Button>
           </div>
         )}
-        {/* <DropdownMenu>
+        <DropdownMenu>
           <DropdownMenuTrigger>Categories</DropdownMenuTrigger>
           <DropdownMenuContent>
             {categories.map((category: Category) => (
-              <DropdownMenuItem key={category.id}>
-                <Link href={category.slug}>{category.name}</Link>
-              </DropdownMenuItem>
+              <Link href={`/${category.slug}`} className="cursor-pointer">
+                <DropdownMenuItem key={category.id}>
+                  {category.name}
+                </DropdownMenuItem>
+              </Link>
             ))}
           </DropdownMenuContent>
-        </DropdownMenu> */}
+        </DropdownMenu>
       </div>
       <ThemeToggle />
     </header>

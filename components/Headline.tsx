@@ -30,7 +30,7 @@ const Headline = async (props: Props) => {
     <section className="flex flex-col md:flex-row gap-4 container">
       {posts.slice(0, 1).map((post: any) => (
         <Link
-          href={post.slug}
+          href={`${post.category?.slug}/${post.slug}`}
           className="flex-[4] relative rounded-2xl overflow-hidden headlineAfter"
           key={post.slug}
         >
@@ -65,7 +65,7 @@ const Headline = async (props: Props) => {
       <div className="flex-[2] flex flex-col gap-4">
         {posts.slice(1).map((post: any) => (
           <Link
-            href={post.slug}
+            href={`${post.category?.slug}/${post.slug}`}
             className="flex-[4] relative rounded-2xl overflow-hidden headlineAfter"
             key={post.slug}
           >
