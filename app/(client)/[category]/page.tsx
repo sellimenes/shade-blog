@@ -11,11 +11,13 @@ type Props = {
   };
 };
 
-const getCategoryPosts = async (categoryId: any) => {
+const getCategoryPosts = async (categorySlug: any) => {
   const posts = await prisma.post.findMany({
     where: {
       published: true,
-      categoryId,
+      category: {
+        slug: categorySlug,
+      },
     },
     orderBy: {
       createdAt: "desc",
@@ -28,19 +30,8 @@ const getCategoryPosts = async (categoryId: any) => {
   return posts;
 };
 
-const getCategoryId = async (categorySlug: string) => {
-  const category = await prisma.category.findUnique({
-    where: {
-      slug: categorySlug,
-    },
-  });
-
-  return category?.id;
-};
-
 const CategoryPage = async ({ params }: Props) => {
-  const categoryId = await getCategoryId(params.category);
-  const posts = await getCategoryPosts(categoryId);
+  const posts = await getCategoryPosts(params.category);
   return (
     <div className="container grid grid-cols-1 lg:grid-cols-3 gap-3">
       {posts.map((post: any) => (
