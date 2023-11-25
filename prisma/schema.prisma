@@ -28,6 +28,7 @@ model Post {
   published   Boolean   @default(false)
   category    Category? @relation(fields: [categoryId], references: [id])
   categoryId  String   @db.ObjectId
+  tags        String[]
 }
 
 model Category {

@@ -65,6 +65,9 @@ export const getSinglePost = async (slug: string) => {
       where: {
         slug,
       },
+      include: {
+        category: true,
+      },
     });
     if (!post) {
       return null;

@@ -18,6 +18,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post?.title} | WOblog`,
     description: post?.content?.slice(0, 100),
+    openGraph: {
+      title: `${post?.title} | WOblog`,
+      description: post?.content?.slice(0, 100),
+      images: [
+        {
+          url: `${post?.coverImage}`,
+          width: 1280,
+          height: 720,
+          alt: post?.title,
+        },
+      ],
+    },
+    twitter: {
+      images: [
+        {
+          url: `${post?.coverImage}`,
+          width: 1280,
+          height: 720,
+          alt: post?.title,
+        },
+      ],
+      title: `${post?.title} | WOblog`,
+      description: post?.content?.slice(0, 100),
+    },
+    robots: "index, follow",
+    creator: "WOblog",
+    publisher: "WOblog",
+    keywords: post?.tags?.join(", "),
+    alternates: {
+      canonical: `https://woblog.net/${post?.category.slug}/${post?.slug}`,
+    },
   };
 }
 
