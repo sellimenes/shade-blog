@@ -4,7 +4,7 @@ import prisma from "@/lib/prismadb";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { title, content, categoryId, coverImage } = body;
+    const { title, content, categoryId, coverImage, tags } = body;
 
     const turkishToEnglish: { [key: string]: string } = {
       ç: "c",
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     slug = slug.replace(/\s/g, "-"); // Replace spaces with -
     slug = slug.replace(/[ \t\n\r:,?!.();]/g, ""); // Remove all non-word chars
 
-    if (!title || !content || !categoryId || !coverImage || !slug) {
+    if (!title || !content || !categoryId || !coverImage || !slug || !tags) {
       return new NextResponse("All fields are required", { status: 400 });
     }
 
@@ -53,6 +53,7 @@ export async function POST(req: Request) {
         content,
         slug,
         coverImage,
+        tags,
         category: {
           connect: {
             id: categoryId,

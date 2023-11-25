@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     robots: "index, follow",
     creator: "WOblog",
     publisher: "WOblog",
-    keywords: post?.tags?.join(", "),
+    keywords: post?.tags,
     alternates: {
       canonical: `https://woblog.net/${post?.category?.slug}/${post?.slug}`,
     },

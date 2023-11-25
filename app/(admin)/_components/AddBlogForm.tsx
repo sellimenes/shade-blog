@@ -30,6 +30,7 @@ const AddBlogForm = ({ id }: Props) => {
     title: "",
     content: "",
     categoryId: "",
+    tags: "",
   });
 
   function addAltAttribute(content: string) {
@@ -51,13 +52,14 @@ const AddBlogForm = ({ id }: Props) => {
       const responseImage = await axios.post("/api/s3-upload", formData);
       const coverImage = responseImage.data.fileName;
 
-      const { title, content, categoryId } = postData;
+      const { title, content, categoryId, tags } = postData;
       const contentWithAltTagImages = addAltAttribute(content);
       const res = await createPost(
         title,
         contentWithAltTagImages,
         categoryId,
-        coverImage
+        coverImage,
+        tags
       );
       router.push("/admin/posts");
     } catch (error) {
@@ -71,12 +73,13 @@ const AddBlogForm = ({ id }: Props) => {
     const post = await axios.get(`/api/post/${id}`);
     const { data } = post;
     if (!post) return;
-    const { title, content, categoryId } = data;
+    const { title, content, categoryId, tags } = data;
     if (content && title && categoryId) {
       setPostData({
         title,
         content,
         categoryId,
+        tags,
       });
     }
   };
@@ -112,6 +115,18 @@ const AddBlogForm = ({ id }: Props) => {
           </Label>
           <TextEditor
             onChange={(content) => setPostData({ ...postData, content })}
+          />
+        </div>
+        <div className="mt-4 grid w-full items-center gap-1.5">
+          <Label htmlFor="tags" className="text-xl">
+            Tags
+          </Label>
+          <Input
+            type="tags"
+            id="tags"
+            placeholder="Tags"
+            onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+            value={postData.tags}
           />
         </div>
         <div className="mt-4 relative">

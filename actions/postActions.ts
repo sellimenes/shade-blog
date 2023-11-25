@@ -6,7 +6,8 @@ export const createPost = async (
   title: string,
   content: string,
   categoryId: string,
-  coverImage: string
+  coverImage: string,
+  tags: string
 ) => {
   try {
     await axios.post("/api/post", {
@@ -14,6 +15,7 @@ export const createPost = async (
       content,
       categoryId,
       coverImage,
+      tags,
     });
   } catch (error) {
     console.log(error);
