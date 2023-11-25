@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     publisher: "WOblog",
     keywords: post?.tags?.join(", "),
     alternates: {
-      canonical: `https://woblog.net/${post?.category.slug}/${post?.slug}`,
+      canonical: `https://woblog.net/${post?.category?.slug}/${post?.slug}`,
     },
   };
 }
