@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           alt: post?.title,
         },
       ],
+      card: "summary_large_image",
       title: `${post?.title} | WOblog`,
       description: post?.content?.slice(0, 100),
     },
