@@ -34,7 +34,13 @@ const BlogDetail = async ({ params }: Props) => {
         <article className="mb-8">
           <h1 className="text-3xl font-bold">{post.title}</h1>
           <div className="relative w-full aspect-video mb-6">
-            <Image src={post.coverImage} alt={post.title} fill quality={70} />
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              fill
+              quality={70}
+              priority
+            />
           </div>
           {post.content && (
             <div
