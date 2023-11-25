@@ -32,6 +32,14 @@ const AddBlogForm = ({ id }: Props) => {
     categoryId: "",
   });
 
+  function addAltAttribute(content: string) {
+    let contentAlt = content.replaceAll(
+      "<img ",
+      '<img alt="' + postData.title + '" '
+    );
+    return contentAlt;
+  }
+
   const handleCreatePost = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -44,7 +52,13 @@ const AddBlogForm = ({ id }: Props) => {
       const coverImage = responseImage.data.fileName;
 
       const { title, content, categoryId } = postData;
-      const res = await createPost(title, content, categoryId, coverImage);
+      const contentWithAltTagImages = addAltAttribute(content);
+      const res = await createPost(
+        title,
+        contentWithAltTagImages,
+        categoryId,
+        coverImage
+      );
       router.push("/admin/posts");
     } catch (error) {
     } finally {
@@ -66,6 +80,10 @@ const AddBlogForm = ({ id }: Props) => {
       });
     }
   };
+
+  useEffect(() => {
+    console.log(postData);
+  }, [postData]);
 
   useEffect(() => {
     getEditPost({ id });
