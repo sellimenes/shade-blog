@@ -1,6 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import {
   ArrowDownLeftFromCircle,
   CircleDollarSign,
@@ -9,19 +8,24 @@ import {
   LayoutDashboard,
   Newspaper,
 } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { signOut, useSession, getSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
+
 import HamburgerButton from "@/components/ui/hamburger-button";
 import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "@/components/ThemeToggle";
-import { usePathname } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
 
 type Props = {};
 
 const Sidebar = (props: Props) => {
   const session = useSession();
+  const [me, setMe] = useState();
   const url = usePathname();
   const [open, setOpen] = useState(true);
 
@@ -29,8 +33,14 @@ const Sidebar = (props: Props) => {
     signOut();
   };
 
+  const handleMe = async () => {
+    const req = await axios.get(`/api/me?email=${session?.data?.user?.email}`);
+    console.log(req.data);
+  };
+
   const toggleSidebar = () => {
     setOpen(!open);
+    handleMe();
     console.log(session);
   };
   return (
