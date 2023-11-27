@@ -1,4 +1,11 @@
-import AddBlogForm from "@/app/(admin)/_components/AddBlogForm";
+import dynamic from "next/dynamic";
+
+const AddBlogForm = dynamic(
+  () => import("@/app/(admin)/_components/AddBlogForm"),
+  {
+    ssr: false,
+  }
+);
 
 type Props = {};
 
