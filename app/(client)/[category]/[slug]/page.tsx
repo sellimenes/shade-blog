@@ -63,26 +63,28 @@ const BlogDetail = async ({ params }: Props) => {
 
   return (
     <div className="container flex flex-col-reverse lg:flex-row gap-8">
-      <Reactions postId={post.id} />
       <div className="flex-1">
-        <article className="mb-8">
-          <h1 className="text-3xl font-bold">{post.title}</h1>
-          <div className="relative w-full aspect-video mb-6">
-            <Image
-              src={post.coverImage}
-              alt={post.title}
-              fill
-              quality={70}
-              priority
-            />
-          </div>
-          {post.content && (
-            <div
-              dangerouslySetInnerHTML={{ __html: post.content }}
-              className="postWrapper"
-            />
-          )}
-        </article>
+        <div className="flex flex-col-reverse lg:flex-row lg:gap-6 mb-8">
+          <Reactions postId={post.id} />
+          <article>
+            <h1 className="text-3xl font-bold">{post.title}</h1>
+            <div className="relative w-full aspect-video mb-6">
+              <Image
+                src={post.coverImage}
+                alt={post.title}
+                fill
+                quality={70}
+                priority
+              />
+            </div>
+            {post.content && (
+              <div
+                dangerouslySetInnerHTML={{ __html: post.content }}
+                className="postWrapper"
+              />
+            )}
+          </article>
+        </div>
         <RelatedPosts categoryId={post.categoryId} postId={post.id} />
       </div>
       <div className="w-[300px] h-[250px] bg-red-500 lg:mt-12 lg:sticky top-5 flex justify-center items-center text-white text-2xl font-bold">

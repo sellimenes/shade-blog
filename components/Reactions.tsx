@@ -46,7 +46,7 @@ const Reactions = ({ postId }: Props) => {
     getReactions(postId);
   }, [postId]);
   return (
-    <div className="sticky top-5 h-full flex flex-col gap-5">
+    <div className="lg:sticky top-5 h-full flex lg:flex-col gap-5">
       <div
         onClick={() => sendReaction(postId, "like")}
         className="flex flex-col justify-center items-center gap-1 hover:scale-110 transition-all duration-300 cursor-pointer"
