@@ -115,6 +115,7 @@ const AddBlogForm = ({ id }: Props) => {
           </Label>
           <TextEditor
             onChange={(content) => setPostData({ ...postData, content })}
+            value={postData.content}
           />
         </div>
         <div className="mt-4 grid w-full items-center gap-1.5">

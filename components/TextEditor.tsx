@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css";
 
 type Props = {
   onChange: (value: string) => void;
+  value: string;
 };
 
 // TODO: React Quill Image Upload will be added...
@@ -44,7 +45,7 @@ const modules = {
   ],
 };
 
-function TextEditor({ onChange }: Props) {
+function TextEditor({ onChange, value }: Props) {
   const handleChange = (content: string) => {
     onChange(content);
   };
@@ -56,6 +57,7 @@ function TextEditor({ onChange }: Props) {
       modules={modules}
       placeholder="Write something awesome..."
       style={{ color: "white" }}
+      value={value}
     />
   );
 }
