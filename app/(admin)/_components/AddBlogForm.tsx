@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
 import axios from "axios";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,14 +13,30 @@ import { Button } from "@/components/ui/button";
 import SelectCategoryCombobox from "@/app/(admin)/_components/SelectCategoryCombobox";
 import UploadImage from "@/app/(admin)/_components/UploadImage";
 
-const TextEditor = dynamic(() => import("@/components/TextEditor"), {
-  ssr: false,
-});
+// const TextEditor = dynamic(() => import("@/components/TextEditor"), {
+//   ssr: false,
+// });
 
 import { createPost, getSinglePost } from "@/actions/postActions";
 
 type Props = {
   id?: string;
+};
+
+const quillModules = {
+  toolbar: [
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+    ["bold", "italic", "underline", "strike", "blockquote", "code-block"],
+    [{ align: "center" }, { align: "right" }, { align: "justify" }],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["link", "image", "video"],
+    ["clean"],
+  ],
 };
 
 const AddBlogForm = ({ id }: Props) => {
@@ -33,6 +50,7 @@ const AddBlogForm = ({ id }: Props) => {
     tags: "",
   });
 
+  // Find all <img> tags and add alt attribute in the postData.content
   function addAltAttribute(content: string) {
     let contentAlt = content.replaceAll(
       "<img ",
@@ -70,23 +88,23 @@ const AddBlogForm = ({ id }: Props) => {
 
   const getEditPost = async ({ id }: Props) => {
     if (!id) return;
+    setLoading(true);
     const post = await axios.get(`/api/post/${id}`);
-    const { data } = post;
     if (!post) return;
-    const { title, content, categoryId, tags } = data;
-    if (content && title && categoryId) {
-      setPostData({
-        title,
-        content,
-        categoryId,
-        tags,
-      });
-    }
+
+    setPostData({
+      title: post.data.title,
+      categoryId: post.data.categoryId,
+      tags: post.data.tags,
+      content: post.data.content,
+    });
+
+    setLoading(false);
   };
 
-  useEffect(() => {
-    console.log(postData);
-  }, [postData]);
+  const handleChangeContent = (content: string) => {
+    setPostData({ ...postData, content: content });
+  };
 
   useEffect(() => {
     getEditPost({ id });
@@ -113,9 +131,13 @@ const AddBlogForm = ({ id }: Props) => {
           <Label htmlFor="editor" className="text-xl">
             Content
           </Label>
-          <TextEditor
-            onChange={(content) => setPostData({ ...postData, content })}
+          <ReactQuill
+            theme="snow"
+            style={{ color: "white" }}
+            modules={quillModules}
+            placeholder="Write something awesome..."
             value={postData.content}
+            onChange={handleChangeContent}
           />
         </div>
         <div className="mt-4 grid w-full items-center gap-1.5">
@@ -148,7 +170,7 @@ const AddBlogForm = ({ id }: Props) => {
           />
         </div>
         <Button className="mt-4" onClick={handleCreatePost} disabled={loading}>
-          {loading ? "Loading..." : "Create"}
+          {loading ? "Loading..." : "Edit Post"}
         </Button>
       </form>
     </div>

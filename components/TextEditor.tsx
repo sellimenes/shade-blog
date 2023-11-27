@@ -5,6 +5,8 @@ import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+// NOT USED CURRENTLY, REFACTORED TO INLINE USE IN ADDBLOGFORM COMPONENT
+
 type Props = {
   onChange: (value: string) => void;
   value: string;
@@ -46,18 +48,14 @@ const modules = {
 };
 
 function TextEditor({ onChange, value }: Props) {
-  const handleChange = (content: string) => {
-    onChange(content);
-  };
-
   return (
     <ReactQuill
       theme="snow"
-      onChange={handleChange}
+      style={{ color: "white" }}
       modules={modules}
       placeholder="Write something awesome..."
-      style={{ color: "white" }}
       value={value}
+      onChange={onChange}
     />
   );
 }
