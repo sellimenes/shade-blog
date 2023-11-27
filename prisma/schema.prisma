@@ -29,6 +29,7 @@ model Post {
   category    Category? @relation(fields: [categoryId], references: [id])
   categoryId  String   @db.ObjectId
   tags        String
+  reactions      Reactions[]
 }
 
 model Category {
@@ -39,4 +40,19 @@ model Category {
   description String?
   slug        String    @unique
   posts       Post[]
+}
+
+model Reactions {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  like        Int       @default(0)
+  dislike     Int       @default(0)
+  love        Int       @default(0)
+  laugh       Int       @default(0)
+  angry       Int       @default(0)
+  sad         Int       @default(0)
+  wow         Int       @default(0)
+  post        Post?     @relation(fields: [postId], references: [id])
+  postId      String    @db.ObjectId @unique
 }

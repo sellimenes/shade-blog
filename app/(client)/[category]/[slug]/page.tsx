@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import RelatedPosts from "@/components/RelatedPosts";
 
 import { getSinglePost } from "@/actions/postActions";
+import Reactions from "@/components/Reactions";
 
 type Props = {
   params: {
@@ -61,7 +62,8 @@ const BlogDetail = async ({ params }: Props) => {
   }
 
   return (
-    <div className="container flex flex-col-reverse lg:flex-row gap-10">
+    <div className="container flex flex-col-reverse lg:flex-row gap-8">
+      <Reactions postId={post.id} />
       <div className="flex-1">
         <article className="mb-8">
           <h1 className="text-3xl font-bold">{post.title}</h1>
@@ -83,7 +85,7 @@ const BlogDetail = async ({ params }: Props) => {
         </article>
         <RelatedPosts categoryId={post.categoryId} postId={post.id} />
       </div>
-      <div className="w-[300px] h-[250px] bg-red-500 lg:mt-11 lg:sticky top-5 flex justify-center items-center text-white text-2xl font-bold">
+      <div className="w-[300px] h-[250px] bg-red-500 lg:mt-12 lg:sticky top-5 flex justify-center items-center text-white text-2xl font-bold">
         AD Space
       </div>
     </div>

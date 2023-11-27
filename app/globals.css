@@ -164,6 +164,10 @@ article h1 {
   @apply list-decimal list-inside;
 }
 
+.postWrapper p + ul {
+  @apply -mt-3 mb-3;
+}
+
 .postWrapper ul {
   @apply list-disc list-inside;
 }

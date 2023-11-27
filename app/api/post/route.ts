@@ -62,6 +62,12 @@ export async function POST(req: Request) {
       },
     });
 
+    const reactions = await prisma.reactions.create({
+      data: {
+        postId: post.id,
+      },
+    });
+
     return NextResponse.json(post);
   } catch (error) {
     console.log("POST POST", error);
