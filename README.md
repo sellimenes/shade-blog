@@ -1,4 +1,4 @@
-# Shade Blog is a open-source blog script coded with Next.js 14 fullstack (in-progress).
+# Shade Blog is an open-source blog template developed with Next.js 14 fullstack (in-progress)
 
 **Go to the demo URL:** https://woblog.net/
 ![Homepage](https://i.hizliresim.com/rj3kk0i.jpg)
@@ -14,7 +14,7 @@
 
 ## Future Plans:
 
-- [ ] Role based auth
+- [ ] Role-based authentication
 - [ ] Change React Quill with another RTE
 - [ ] Comment feature
 - [ ] Block multiple/spam reactions
