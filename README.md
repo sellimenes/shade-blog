@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shade Blog is a open-source blog script coded with Next.js 14 fullstack (in-progress).
 
-## Getting Started
+**Go to the demo URL:** https://woblog.net/
+![Homepage](https://i.hizliresim.com/rj3kk0i.jpg)
 
-First, run the development server:
+## Features:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Add/Edit/Delete article,
+- Add/Edit/Delete category,
+- React to articles with emojis,
+- Full SEO friendly metadata and code,
+- Authentication (NextAuth),
+- Upload image to AWS S3 Bucket and share as a cover img in the article.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Future Plans:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [ ] Role based auth
+- [ ] Change React Quill with another RTE
+- [ ] Comment feature
+- [ ] Block multiple/spam reactions
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## .env file content:
 
-## Learn More
+- DATABASE_URL
+- NEXT_PUBLIC_AWS_IAM_ACCESS_KEY_ID
+- NEXT_PUBLIC_AWS_IAM_SECRET_KEY
+- NEXT_PUBLIC_S3_REGION
+- NEXT_PUBLIC_S3_BUCKET
+- NEXT_PUBLIC_GOOGLE_ANALYTICS
+- NEXTAUTH_SECRET
+- GITHUB_ID
+- GITHUB_SECRET
+- GOOGLE_CLIENT_ID
+- GOOGLE_CLIENT_SECRET
 
-To learn more about Next.js, take a look at the following resources:
+## How to Install?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You just need to fill .env content with your own information and start the project. For DATABASE_URL, I used MongoDB Atlas. If you need any help, don't hesitate to contact.
