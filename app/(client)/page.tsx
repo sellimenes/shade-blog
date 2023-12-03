@@ -2,7 +2,7 @@ import Headline from "@/components/Headline";
 import NewBlogs from "@/components/NewBlogs";
 import { MoveRight } from "lucide-react";
 
-export const revalidate = 3600; // Re-fetch data every 1 hour.
+export const revalidate = 86400; // Re-fetch data every 1 hour.
 
 export default function Home() {
   return (
