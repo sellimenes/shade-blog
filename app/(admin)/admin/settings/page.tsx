@@ -25,7 +25,7 @@ const SettingsPage = (props: Props) => {
             name="siteName"
             id="siteName"
             className="border border-gray-300 rounded px-3 py-2"
-            onChange={(e) => console.log(e.target.value)}
+            onChange={(e) => console.log(e.target.value, "test")}
             placeholder="Shade Blog..."
           />
         </div>
