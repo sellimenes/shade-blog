@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils";
 type Props = {
   className?: string;
   onImageChange: (image: any) => void;
+  title?: string;
 };
 
-const UploadImage = ({ className, onImageChange }: Props) => {
+const UploadImage = ({ className, onImageChange, title }: Props) => {
   const [image, setImage] = useState<string | undefined>(undefined);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -63,7 +64,7 @@ const UploadImage = ({ className, onImageChange }: Props) => {
       ) : (
         <div className="flex flex-col items-center justify-center">
           <span className="text-2xl text-white dark:text-primary-foreground">
-            Upload Cover Image
+            {title || "Upload Image"}
           </span>
         </div>
       )}

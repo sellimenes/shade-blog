@@ -7,6 +7,7 @@ import {
   Image,
   LayoutDashboard,
   Newspaper,
+  Settings,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -139,10 +140,10 @@ const Sidebar = (props: Props) => {
           </li>
         </Link>
         <Link
-          href="/gallery"
+          href="/admin/gallery"
           className={cn(
-            "flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer",
-            url === "/gallery"
+            "flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer pointer-events-none opacity-30",
+            url === "/admin/gallery"
               ? "bg-[#666cff] text-white"
               : "hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]"
           )}
@@ -155,6 +156,25 @@ const Sidebar = (props: Props) => {
               )}
             />
             Media Gallery
+          </li>
+        </Link>
+        <Link
+          href="/admin/settings"
+          className={cn(
+            "flex items-center justify-between w-full overflow-hidden whitespace-nowrap leading-10 cursor-pointer",
+            url === "/admin/settings"
+              ? "bg-[#666cff] text-white"
+              : "hover:bg-[#4c4e6414] dark:hover:bg-[#eaeaff14]"
+          )}
+        >
+          <li className="flex items-center gap-3 px-5">
+            <Settings
+              className={cn(
+                "cursor-pointer transition-all duration-300",
+                open ? "w-5 h-5" : "w-6 h-6 ml-[-8px]"
+              )}
+            />
+            Settings
           </li>
         </Link>
       </ul>
