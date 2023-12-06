@@ -30,7 +30,7 @@ const getRelatedPosts = async (categoryId: string, postId: string) => {
 const RelatedPosts = async ({ categoryId, postId }: Props) => {
   const posts = await getRelatedPosts(categoryId, postId);
   return (
-    <section className="">
+    <section className="lg:ml-10">
       <div className="text-xl opacity-80 font-semibold mb-3">
         You May Also Like
       </div>
